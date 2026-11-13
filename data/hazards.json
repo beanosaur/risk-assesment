@@ -1,0 +1,50 @@
+{
+  "version": 1,
+  "note": "Starter hazard library for English Civil War reenactment sites. Replace or extend with the Sealed Knot workbook (SK_RA_Oct_23.xlsx) checklists.",
+  "activities": [
+    { "id": "battle", "name": "Battle reenactment" },
+    { "id": "living-history", "name": "Living history" },
+    { "id": "camping", "name": "Members' camping" },
+    { "id": "public", "name": "Public areas" }
+  ],
+  "hazards": [
+    { "id": "ground-uneven", "activities": ["battle", "living-history", "camping", "public"], "area": "Site & ground", "hazard": "Uneven ground, holes, rabbit burrows", "who": "Participants, public", "controls": "Walk the field before the event; mark or fill holes; brief units on known hazards." },
+    { "id": "ground-slope", "activities": ["battle", "public"], "area": "Site & ground", "hazard": "Steep slopes or banks", "who": "Participants, cavalry, public", "controls": "Keep battle lines off steep ground; tape off banks; position public on level ground." },
+    { "id": "ground-wet", "activities": ["battle", "living-history", "camping", "public"], "area": "Site & ground", "hazard": "Wet, muddy or waterlogged ground", "who": "All", "controls": "Re-walk after rain; adjust battle area; trackway or matting at entrances." },
+    { "id": "water", "activities": ["battle", "living-history", "camping", "public"], "area": "Site & ground", "hazard": "Open water, ditches, rivers", "who": "All, especially children", "controls": "Fence or tape off; keep battle and camp clear; brief stewards." },
+    { "id": "overhead-lines", "activities": ["battle", "camping", "public"], "area": "Site & ground", "hazard": "Overhead power lines (pikes, flag poles, tent poles)", "who": "Pikemen, ensigns, campers", "controls": "Identify on site plan; exclusion zone with no pikes or poles raised beneath." },
+    { "id": "trees", "activities": ["battle", "living-history", "camping", "public"], "area": "Site & ground", "hazard": "Trees, low branches, dead wood", "who": "All, cavalry", "controls": "Check for dead branches; keep cavalry clear of low branches; no camping under unsafe trees." },
+    { "id": "livestock", "activities": ["battle", "camping", "public"], "area": "Site & ground", "hazard": "Livestock, dung, fencing (barbed/electric)", "who": "All", "controls": "Agree with landowner to remove stock; mark electric fences; clear dung from battle area." },
+
+    { "id": "powder-storage", "activities": ["battle", "camping"], "area": "Black powder & firearms", "hazard": "Black powder storage and transport", "who": "Musketeers, artillery, campers", "controls": "Licensed storage; approved containers; magazine away from fires and tents; powder officer responsible." },
+    { "id": "musket-firing", "activities": ["battle"], "area": "Black powder & firearms", "hazard": "Musket firing: burns, ear and eye injury", "who": "Musketeers, nearby troops", "controls": "Authorised and tested musketeers only; firing angles and minimum distances; no ramrods on field; ear protection advised." },
+    { "id": "artillery", "activities": ["battle"], "area": "Black powder & firearms", "hazard": "Artillery firing", "who": "Gun crews, troops, public", "controls": "Qualified gun captain; safety zones in front and behind guns; misfire drill; gun inspected." },
+    { "id": "fire-crowd-line", "activities": ["battle", "public"], "area": "Black powder & firearms", "hazard": "Firing towards or near the public", "who": "Public", "controls": "No firing towards crowd line; minimum distance from barrier; marshals monitor." },
+
+    { "id": "pike-push", "activities": ["battle"], "area": "Combat", "hazard": "Pike push and pike contact", "who": "Pikemen", "controls": "Authorised pikemen only; pikes checked for damage; officers control push; break-off signal known." },
+    { "id": "hand-to-hand", "activities": ["battle"], "area": "Combat", "hazard": "Hand-to-hand combat and swords", "who": "Participants", "controls": "Blunt weapons checked; authorised combatants only; no head blows; stop signal." },
+    { "id": "cavalry", "activities": ["battle", "public"], "area": "Combat", "hazard": "Cavalry and horses", "who": "Riders, infantry, public", "controls": "Authorised riders; horses checked; cavalry lanes; keep public away from horse lines." },
+    { "id": "casualties-field", "activities": ["battle"], "area": "Combat", "hazard": "Real casualty on the battlefield", "who": "Participants", "controls": "Real-casualty signal known to all; first aid on field edge; clear access route." },
+
+    { "id": "open-fires", "activities": ["living-history", "camping"], "area": "Fire & cooking", "hazard": "Open fires and fire pits", "who": "Campers, public, children", "controls": "Fire pits raised or turf lifted; water/extinguisher by every fire; never left unattended; spacing from tents." },
+    { "id": "cooking", "activities": ["living-history", "camping"], "area": "Fire & cooking", "hazard": "Cooking: burns, scalds, food hygiene", "who": "Cooks, public", "controls": "Barrier between public and cooking; food hygiene practices; hand washing." },
+    { "id": "gas", "activities": ["camping"], "area": "Fire & cooking", "hazard": "Gas cylinders and stoves", "who": "Campers", "controls": "Cylinders upright, outside tents, away from fires; check hoses; no gas in living history area." },
+
+    { "id": "guy-ropes", "activities": ["living-history", "camping", "public"], "area": "Camp", "hazard": "Guy ropes and tent pegs (tripping)", "who": "Campers, public", "controls": "Mark guy ropes; peg caps; keep walkways clear; lighting at night." },
+    { "id": "tent-spacing", "activities": ["camping"], "area": "Camp", "hazard": "Fire spread between tents", "who": "Campers", "controls": "Minimum spacing between tents; fire lanes; fire points with extinguishers." },
+    { "id": "edged-display", "activities": ["living-history", "public"], "area": "Camp", "hazard": "Edged weapons and tools on display", "who": "Public, children", "controls": "Displays supervised; sharp items out of reach; demonstrations behind barrier." },
+    { "id": "alcohol", "activities": ["camping"], "area": "Camp", "hazard": "Alcohol around fires, weapons and powder", "who": "Campers", "controls": "No drinking before or during battle; no powder handling after drinking; camp rules briefed." },
+
+    { "id": "crowd-line", "activities": ["battle", "public"], "area": "Public safety", "hazard": "Crowd line and barriers", "who": "Public", "controls": "Continuous barrier at safe distance; stewards; children kept behind line." },
+    { "id": "vehicles", "activities": ["camping", "public"], "area": "Public safety", "hazard": "Vehicles moving on site", "who": "All", "controls": "Vehicle curfew during public hours; walking pace; banksman for reversing; separate pedestrian routes." },
+    { "id": "lost-child", "activities": ["public"], "area": "Public safety", "hazard": "Lost children", "who": "Public", "controls": "Lost child point; stewards briefed; announcement procedure." },
+    { "id": "emergency-access", "activities": ["battle", "living-history", "camping", "public"], "area": "Public safety", "hazard": "Emergency vehicle access", "who": "All", "controls": "Keep emergency route clear; route marked on site plan; first aid point signed." },
+
+    { "id": "heat", "activities": ["battle", "living-history", "camping", "public"], "area": "Weather", "hazard": "Heat exhaustion and sunburn (wool clothing, armour)", "who": "All", "controls": "Water on field; shorter battle in heat; shade; watch for symptoms." },
+    { "id": "cold-wet", "activities": ["battle", "living-history", "camping", "public"], "area": "Weather", "hazard": "Cold and wet weather", "who": "All", "controls": "Check forecast; dry clothing; warm shelter available." },
+    { "id": "wind-lightning", "activities": ["battle", "camping", "public"], "area": "Weather", "hazard": "High wind or lightning", "who": "All", "controls": "Stop activity in lightning; lower pikes and flags; secure tents and gazebos." },
+
+    { "id": "manual-handling", "activities": ["living-history", "camping"], "area": "General", "hazard": "Manual handling (tents, guns, equipment)", "who": "Participants", "controls": "Team lifts; use trolleys; brief on safe lifting." },
+    { "id": "welfare", "activities": ["battle", "living-history", "camping", "public"], "area": "General", "hazard": "Toilets, drinking water, hand washing", "who": "All", "controls": "Enough toilets and water points; hand washing near food." }
+  ]
+}
