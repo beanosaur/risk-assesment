@@ -1,5 +1,5 @@
 // Offline cache so the app works on site with poor signal.
-const CACHE = 'risk-assess-v1';
+const CACHE = 'risk-assess-v2';
 const FILES = ['./', 'index.html', 'styles.css', 'app.js', 'manifest.json', 'icon.svg', 'data/hazards.json'];
 
 self.addEventListener('install', (e) => {
@@ -15,7 +15,8 @@ self.addEventListener('activate', (e) => {
 });
 
 self.addEventListener('fetch', (e) => {
-  if (e.request.method !== 'GET') return;
+  // Only cache the app's own files; weather and the AI relay always go to the network.
+  if (e.request.method !== 'GET' || new URL(e.request.url).origin !== self.location.origin) return;
   e.respondWith(
     fetch(e.request)
       .then((res) => {
