@@ -1,5 +1,5 @@
 // Offline cache so the app works on site with poor signal.
-const CACHE = 'risk-assess-v2';
+const CACHE = 'risk-assess-v3';
 const FILES = ['./', 'index.html', 'styles.css', 'app.js', 'manifest.json', 'icon.svg', 'data/hazards.json'];
 
 self.addEventListener('install', (e) => {
