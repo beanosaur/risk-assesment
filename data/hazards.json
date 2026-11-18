@@ -1,50 +1,1753 @@
 {
-  "version": 1,
-  "note": "Starter hazard library for English Civil War reenactment sites. Replace or extend with the Sealed Knot workbook (SK_RA_Oct_23.xlsx) checklists.",
-  "activities": [
-    { "id": "battle", "name": "Battle reenactment" },
-    { "id": "living-history", "name": "Living history" },
-    { "id": "camping", "name": "Members' camping" },
-    { "id": "public", "name": "Public areas" }
+ "version": 2,
+ "source": "Sealed Knot Risk Assessment workbook (SK_RA_Oct_23.xlsx, version 13 February 2023)",
+ "note": "RA1–RA17 from the Sealed Knot workbook, plus extra walk-round checks that are not in it.",
+ "bands": {
+  "high": "High (red)",
+  "med": "Medium (amber)",
+  "low": "Low (green)"
+ },
+ "defaultActivities": [
+  "ra1",
+  "ra2",
+  "ra4",
+  "ra8",
+  "ra9",
+  "ra10",
+  "ra11",
+  "ra12",
+  "extra"
+ ],
+ "activities": [
+  {
+   "id": "ra1",
+   "name": "RA1 Fire"
+  },
+  {
+   "id": "ra2",
+   "name": "RA2 Adverse Weather"
+  },
+  {
+   "id": "ra3",
+   "name": "RA3 Living History"
+  },
+  {
+   "id": "ra4",
+   "name": "RA4 Black Powder"
+  },
+  {
+   "id": "ra5",
+   "name": "RA5 Delivery of Black Powder"
+  },
+  {
+   "id": "ra6",
+   "name": "RA6 Issue of Black Powder"
+  },
+  {
+   "id": "ra7",
+   "name": "RA7 Return of Black Powder"
+  },
+  {
+   "id": "ra8",
+   "name": "RA8 Campsite Area"
+  },
+  {
+   "id": "ra9",
+   "name": "RA9 Pedestrians and Traffic in Camping Areas"
+  },
+  {
+   "id": "ra10",
+   "name": "RA10 Roadways"
+  },
+  {
+   "id": "ra11",
+   "name": "RA11 Battle"
+  },
+  {
+   "id": "ra12",
+   "name": "RA12 Leaving and Entering Campsite"
+  },
+  {
+   "id": "ra13",
+   "name": "RA13 Use of Horses"
+  },
+  {
+   "id": "ra14",
+   "name": "RA14 Marching on Public Highways"
+  },
+  {
+   "id": "ra15",
+   "name": "RA15 Lectures and Talks"
+  },
+  {
+   "id": "ra16",
+   "name": "RA16 Banquets"
+  },
+  {
+   "id": "ra17",
+   "name": "RA17 Meetings"
+  },
+  {
+   "id": "extra",
+   "name": "Extra site walk-round checks"
+  }
+ ],
+ "activityNotes": {
+  "ra1": [
+   "General Training: Muster organisers must ensure that Fire Precautions are the first thing checked and maintained"
   ],
-  "hazards": [
-    { "id": "ground-uneven", "activities": ["battle", "living-history", "camping", "public"], "area": "Site & ground", "hazard": "Uneven ground, holes, rabbit burrows", "who": "Participants, public", "controls": "Walk the field before the event; mark or fill holes; brief units on known hazards." },
-    { "id": "ground-slope", "activities": ["battle", "public"], "area": "Site & ground", "hazard": "Steep slopes or banks", "who": "Participants, cavalry, public", "controls": "Keep battle lines off steep ground; tape off banks; position public on level ground." },
-    { "id": "ground-wet", "activities": ["battle", "living-history", "camping", "public"], "area": "Site & ground", "hazard": "Wet, muddy or waterlogged ground", "who": "All", "controls": "Re-walk after rain; adjust battle area; trackway or matting at entrances." },
-    { "id": "water", "activities": ["battle", "living-history", "camping", "public"], "area": "Site & ground", "hazard": "Open water, ditches, rivers", "who": "All, especially children", "controls": "Fence or tape off; keep battle and camp clear; brief stewards." },
-    { "id": "overhead-lines", "activities": ["battle", "camping", "public"], "area": "Site & ground", "hazard": "Overhead power lines (pikes, flag poles, tent poles)", "who": "Pikemen, ensigns, campers", "controls": "Identify on site plan; exclusion zone with no pikes or poles raised beneath." },
-    { "id": "trees", "activities": ["battle", "living-history", "camping", "public"], "area": "Site & ground", "hazard": "Trees, low branches, dead wood", "who": "All, cavalry", "controls": "Check for dead branches; keep cavalry clear of low branches; no camping under unsafe trees." },
-    { "id": "livestock", "activities": ["battle", "camping", "public"], "area": "Site & ground", "hazard": "Livestock, dung, fencing (barbed/electric)", "who": "All", "controls": "Agree with landowner to remove stock; mark electric fences; clear dung from battle area." },
-
-    { "id": "powder-storage", "activities": ["battle", "camping"], "area": "Black powder & firearms", "hazard": "Black powder storage and transport", "who": "Musketeers, artillery, campers", "controls": "Licensed storage; approved containers; magazine away from fires and tents; powder officer responsible." },
-    { "id": "musket-firing", "activities": ["battle"], "area": "Black powder & firearms", "hazard": "Musket firing: burns, ear and eye injury", "who": "Musketeers, nearby troops", "controls": "Authorised and tested musketeers only; firing angles and minimum distances; no ramrods on field; ear protection advised." },
-    { "id": "artillery", "activities": ["battle"], "area": "Black powder & firearms", "hazard": "Artillery firing", "who": "Gun crews, troops, public", "controls": "Qualified gun captain; safety zones in front and behind guns; misfire drill; gun inspected." },
-    { "id": "fire-crowd-line", "activities": ["battle", "public"], "area": "Black powder & firearms", "hazard": "Firing towards or near the public", "who": "Public", "controls": "No firing towards crowd line; minimum distance from barrier; marshals monitor." },
-
-    { "id": "pike-push", "activities": ["battle"], "area": "Combat", "hazard": "Pike push and pike contact", "who": "Pikemen", "controls": "Authorised pikemen only; pikes checked for damage; officers control push; break-off signal known." },
-    { "id": "hand-to-hand", "activities": ["battle"], "area": "Combat", "hazard": "Hand-to-hand combat and swords", "who": "Participants", "controls": "Blunt weapons checked; authorised combatants only; no head blows; stop signal." },
-    { "id": "cavalry", "activities": ["battle", "public"], "area": "Combat", "hazard": "Cavalry and horses", "who": "Riders, infantry, public", "controls": "Authorised riders; horses checked; cavalry lanes; keep public away from horse lines." },
-    { "id": "casualties-field", "activities": ["battle"], "area": "Combat", "hazard": "Real casualty on the battlefield", "who": "Participants", "controls": "Real-casualty signal known to all; first aid on field edge; clear access route." },
-
-    { "id": "open-fires", "activities": ["living-history", "camping"], "area": "Fire & cooking", "hazard": "Open fires and fire pits", "who": "Campers, public, children", "controls": "Fire pits raised or turf lifted; water/extinguisher by every fire; never left unattended; spacing from tents." },
-    { "id": "cooking", "activities": ["living-history", "camping"], "area": "Fire & cooking", "hazard": "Cooking: burns, scalds, food hygiene", "who": "Cooks, public", "controls": "Barrier between public and cooking; food hygiene practices; hand washing." },
-    { "id": "gas", "activities": ["camping"], "area": "Fire & cooking", "hazard": "Gas cylinders and stoves", "who": "Campers", "controls": "Cylinders upright, outside tents, away from fires; check hoses; no gas in living history area." },
-
-    { "id": "guy-ropes", "activities": ["living-history", "camping", "public"], "area": "Camp", "hazard": "Guy ropes and tent pegs (tripping)", "who": "Campers, public", "controls": "Mark guy ropes; peg caps; keep walkways clear; lighting at night." },
-    { "id": "tent-spacing", "activities": ["camping"], "area": "Camp", "hazard": "Fire spread between tents", "who": "Campers", "controls": "Minimum spacing between tents; fire lanes; fire points with extinguishers." },
-    { "id": "edged-display", "activities": ["living-history", "public"], "area": "Camp", "hazard": "Edged weapons and tools on display", "who": "Public, children", "controls": "Displays supervised; sharp items out of reach; demonstrations behind barrier." },
-    { "id": "alcohol", "activities": ["camping"], "area": "Camp", "hazard": "Alcohol around fires, weapons and powder", "who": "Campers", "controls": "No drinking before or during battle; no powder handling after drinking; camp rules briefed." },
-
-    { "id": "crowd-line", "activities": ["battle", "public"], "area": "Public safety", "hazard": "Crowd line and barriers", "who": "Public", "controls": "Continuous barrier at safe distance; stewards; children kept behind line." },
-    { "id": "vehicles", "activities": ["camping", "public"], "area": "Public safety", "hazard": "Vehicles moving on site", "who": "All", "controls": "Vehicle curfew during public hours; walking pace; banksman for reversing; separate pedestrian routes." },
-    { "id": "lost-child", "activities": ["public"], "area": "Public safety", "hazard": "Lost children", "who": "Public", "controls": "Lost child point; stewards briefed; announcement procedure." },
-    { "id": "emergency-access", "activities": ["battle", "living-history", "camping", "public"], "area": "Public safety", "hazard": "Emergency vehicle access", "who": "All", "controls": "Keep emergency route clear; route marked on site plan; first aid point signed." },
-
-    { "id": "heat", "activities": ["battle", "living-history", "camping", "public"], "area": "Weather", "hazard": "Heat exhaustion and sunburn (wool clothing, armour)", "who": "All", "controls": "Water on field; shorter battle in heat; shade; watch for symptoms." },
-    { "id": "cold-wet", "activities": ["battle", "living-history", "camping", "public"], "area": "Weather", "hazard": "Cold and wet weather", "who": "All", "controls": "Check forecast; dry clothing; warm shelter available." },
-    { "id": "wind-lightning", "activities": ["battle", "camping", "public"], "area": "Weather", "hazard": "High wind or lightning", "who": "All", "controls": "Stop activity in lightning; lower pikes and flags; secure tents and gazebos." },
-
-    { "id": "manual-handling", "activities": ["living-history", "camping"], "area": "General", "hazard": "Manual handling (tents, guns, equipment)", "who": "Participants", "controls": "Team lifts; use trolleys; brief on safe lifting." },
-    { "id": "welfare", "activities": ["battle", "living-history", "camping", "public"], "area": "General", "hazard": "Toilets, drinking water, hand washing", "who": "All", "controls": "Enough toilets and water points; hand washing near food." }
+  "ra4": [
+   "Specific Training: Powder store to be maintained by Powder masters (SK) only",
+   "General Training: Musketeers to be trained as per Musket License"
+  ],
+  "ra5": [
+   "Specific Training: Powder store to be maintained by Powder masters (SK) only",
+   "General Training: Musketeers to be trained as per Musket License"
+  ],
+  "ra6": [
+   "Specific Training: Powder store to be maintained by Powder masters (SK) only",
+   "General Training: Musketeers to be trained as per Musket License"
+  ],
+  "ra7": [
+   "Specific Training: Powder store to be maintained by Powder masters (SK) only",
+   "General Training: Musketeers to be trained as per Musket License"
+  ],
+  "ra8": [
+   "General Training: Commanding Officers having a good knowldege of campsite regs"
+  ],
+  "ra11": [
+   "Specific Training: Musket licenses and competency of arms",
+   "General Training: All members must be aware of safety issues and be able to advise the public.",
+   "THE CHAIN OF COMMAND TO MAINTAIN PROPER ORDER TO PREVENT IRRESPONSIBLE BEHAVIOUR BY MEMBERS."
+  ],
+  "ra13": [
+   "Specific Training: All members riding horses must be either SK qualified or in formal training under the supervision of an SK qualified rider"
+  ],
+  "ra14": [
+   "General Training: Bad weather planning"
   ]
+ },
+ "hazards": [
+  {
+   "id": "ra1-campfires",
+   "activities": [
+    "ra1"
+   ],
+   "area": "RA1 Fire",
+   "source": "RA1",
+   "hazard": "Campfires",
+   "risk": "Gets out of control",
+   "who": "Members, other people on site, public",
+   "controls": "Should be in designated areas, to avoid embers igniting tents. Fire fighting equipment should be readily available within the area of the campfire.",
+   "sk": {
+    "rating": {
+     "score": 6,
+     "band": "high"
+    },
+    "residual": {
+     "score": 4,
+     "band": "med"
+    }
+   }
+  },
+  {
+   "id": "ra1-layout-of-camping-units",
+   "activities": [
+    "ra1"
+   ],
+   "area": "RA1 Fire",
+   "source": "RA1",
+   "hazard": "Layout of camping units",
+   "risk": "Too close; No organisation; No place of safety; No way to fight fire; No clear map of site; Black powder risk",
+   "who": "Members, other people on site, public",
+   "controls": "All units should be a minimum of 6 metres apart to prevent the spread of fire\nFire precautions plan\nDesignated Safe Area\nFire-fighting equipment set up at regular intervals around the campsite\nAll campsites should have a grid plan, with a copy available for the use of the emergency services.\nBlack Powder should be stored in accordance with the Black Powder legal requirements",
+   "sk": {
+    "rating": {
+     "score": 9,
+     "band": "high"
+    },
+    "residual": {
+     "score": 4,
+     "band": "med"
+    }
+   }
+  },
+  {
+   "id": "ra1-vendors-traders",
+   "activities": [
+    "ra1"
+   ],
+   "area": "RA1 Fire",
+   "source": "RA1",
+   "hazard": "Vendors/Traders",
+   "risk": "Flammable liquids",
+   "who": "Members, other people on site, public",
+   "controls": "They must be able to show how they are going to store their flammable liquids safely.\nShould be apart from the main camping area.\nMust have adequate and appropriate fire fighting equipment in their unit.",
+   "sk": {
+    "rating": {
+     "score": 6,
+     "band": "high"
+    },
+    "residual": {
+     "score": 2,
+     "band": "low"
+    }
+   }
+  },
+  {
+   "id": "ra1-fire-brigade-access",
+   "activities": [
+    "ra1"
+   ],
+   "area": "RA1 Fire",
+   "source": "RA1",
+   "hazard": "Fire Brigade access",
+   "risk": "",
+   "who": "Members, other people on site, public",
+   "controls": "Entrances to campsite are at least 3m wide",
+   "sk": {
+    "rating": {
+     "score": 6,
+     "band": "high"
+    },
+    "residual": {
+     "score": 2,
+     "band": "low"
+    }
+   }
+  },
+  {
+   "id": "ra2-poor-surface-conditions",
+   "activities": [
+    "ra2"
+   ],
+   "area": "RA2 Adverse Weather",
+   "source": "RA2",
+   "hazard": "Poor Surface conditions",
+   "risk": "Vehicles can't get on or off; Injury due to poor surface conditions; Emergency services unable to enter or leave site; Gate guard and moving round site; Risk of Injury/loss of life due to loss of control of vehicle; Damage to actual camping area surface; Damage to vehicles plus property",
+   "who": "Members, other people on site, public",
+   "controls": "If possible have entrance plus exit, and spare ways out kept unused until end of muster\nRestrict movement of traffic to essential services only in adverse weather conditions\nLiase with emergency services for the event of an emergency and draw up contingency plans.\nRestrict movement of traffic to essential services only in adverse weather conditions\nEnsure that no unnecessary personnel are within the entrance area.",
+   "sk": {
+    "rating": {
+     "score": 9,
+     "band": "high"
+    },
+    "residual": {
+     "score": 6,
+     "band": "high"
+    }
+   }
+  },
+  {
+   "id": "ra2-camping-near-watercourse",
+   "activities": [
+    "ra2"
+   ],
+   "area": "RA2 Adverse Weather",
+   "source": "RA2",
+   "hazard": "Camping near watercourse",
+   "risk": "Risk of flood",
+   "who": "Members, other people on site, public",
+   "controls": "Liase with emergency services for the event of an emergency and draw up contingency plans.",
+   "sk": {
+    "rating": {
+     "score": 9,
+     "band": "high"
+    },
+    "residual": {
+     "score": 6,
+     "band": "high"
+    }
+   }
+  },
+  {
+   "id": "ra2-very-hot-weather",
+   "activities": [
+    "ra2"
+   ],
+   "area": "RA2 Adverse Weather",
+   "source": "RA2",
+   "hazard": "Very hot weather",
+   "risk": "ground is tinder dry; extreme heat",
+   "who": "Members, other people on site, public",
+   "controls": "BBQ ban, fire/smoking restrictions as required\nshorter performance times, provide shade for horses, marshall car parks to ensure dogs not left in cars, provide extra water & rehydration salts in medics tent on battlefield.",
+   "sk": {
+    "rating": {
+     "score": 9,
+     "band": "high"
+    },
+    "residual": {
+     "score": 4,
+     "band": "med"
+    }
+   }
+  },
+  {
+   "id": "ra3-fire",
+   "activities": [
+    "ra3"
+   ],
+   "area": "RA3 Living History",
+   "source": "RA3",
+   "hazard": "Fire",
+   "risk": "Danger of burning to public and reenactors",
+   "who": "Members, public",
+   "controls": "1. Fire fighting equipment must be positioned within the campfire areas.\n2. Campfires must always be attended, and safely positioned.\n3. Due to the fact a large amount of modern day clothing is highly flammable, the publics safety must always be observed.\n4. Because of this the public should have a steward to take them around the site, or stewards should be stationed at high risk areas such as fires, and be responsible for the safety of that area.",
+   "sk": {
+    "rating": {
+     "score": 9,
+     "band": "high"
+    },
+    "residual": {
+     "score": 4,
+     "band": "med"
+    }
+   }
+  },
+  {
+   "id": "ra3-sharpened-stakes",
+   "activities": [
+    "ra3"
+   ],
+   "area": "RA3 Living History",
+   "source": "RA3",
+   "hazard": "Sharpened Stakes",
+   "risk": "Danger of impaling to public and reenactors",
+   "who": "Members, public",
+   "controls": "5.Sharpened Stakes-Again the fire safety officer was extremely worried about these in an area where the public had access.\n6. From a safety aspect these should not have a sharp point, and should be blunted in areas the public have access.\n7. Again a steward to maintain safety in this area would be ideal.",
+   "sk": {
+    "rating": {
+     "score": 9,
+     "band": "high"
+    },
+    "residual": {
+     "score": 3,
+     "band": "med"
+    }
+   }
+  },
+  {
+   "id": "ra3-equipment",
+   "activities": [
+    "ra3"
+   ],
+   "area": "RA3 Living History",
+   "source": "RA3",
+   "hazard": "Equipment",
+   "risk": "Danger of injury to public; theft",
+   "who": "Members, public",
+   "controls": "8. Equipment- a large amount of working equipment is on view around this site.\n9. All precautions must be taken that the public cannot damage either themselves or the equipment.\n10. Again any high-risk equipment should have a steward responsible for its safety.\n11. Any members of LH holding powder must adhere strictly to safety policy and regulations, and must remain extra vigilant in the care of their musket.\n12. Given the fact that the public is in direct contact with members within the Living History site, members taking part have a personal responsibility to ensure their own and the public’s safety.",
+   "sk": {
+    "rating": {
+     "score": 6,
+     "band": "high"
+    },
+    "residual": {
+     "score": 3,
+     "band": "med"
+    }
+   }
+  },
+  {
+   "id": "ra3-food",
+   "activities": [
+    "ra3"
+   ],
+   "area": "RA3 Living History",
+   "source": "RA3",
+   "hazard": "Food",
+   "risk": "Danger of food poisoning or harm to public or re-enactors",
+   "who": "Members, public",
+   "controls": "13. Cooking- there is a high risk of food poisoning if all hygiene, and adequate food preparation is not taken.\n14. All meat etc must be from reliable sources and stored and prepared correctly\n15. Nothing prepared either within the living history encampment nor at members home in advance of the event is to be sampled by the general public.",
+   "sk": {
+    "rating": {
+     "score": 6,
+     "band": "high"
+    },
+    "residual": {
+     "score": 2,
+     "band": "low"
+    }
+   }
+  },
+  {
+   "id": "ra4-explosion-fire-caused-by-direct-or-indir",
+   "activities": [
+    "ra4"
+   ],
+   "area": "RA4 Black Powder",
+   "source": "RA4",
+   "hazard": "Explosion/fire caused by direct or indirect heat source",
+   "risk": "Premature Ignition; Injury/loss of life.; Damage to Property",
+   "who": "Members",
+   "controls": "In the event of a fire on the campsite the powder area is a high-risk area and members must be evacuated for their own safety, and all possible fire precautions taken.\nThis area must be immediately identified to the fire service on their arrival.\nA blast proof/safe area must be maintained at all times around the storage and issue area of powder.\nA non-smoking policy must apply in this area.\nHazard signs must be clearly visible that this is a high-risk area.",
+   "sk": {
+    "rating": {
+     "score": 9,
+     "band": "high"
+    },
+    "residual": {
+     "score": 4,
+     "band": "med"
+    }
+   }
+  },
+  {
+   "id": "ra4-spillage",
+   "activities": [
+    "ra4"
+   ],
+   "area": "RA4 Black Powder",
+   "source": "RA4",
+   "hazard": "Spillage",
+   "risk": "Premature Ignition",
+   "who": "Members",
+   "controls": "Water to be kept at hand to deal with spills at issue.",
+   "sk": {
+    "rating": {
+     "score": 9,
+     "band": "high"
+    },
+    "residual": {
+     "score": 4,
+     "band": "med"
+    }
+   }
+  },
+  {
+   "id": "ra4-powder-in-the-possession-of-non-qualifie",
+   "activities": [
+    "ra4"
+   ],
+   "area": "RA4 Black Powder",
+   "source": "RA4",
+   "hazard": "Powder in the possession of non qualified persons",
+   "risk": "",
+   "who": "Members",
+   "controls": "A set procedure for distribution of powder must be adhered to.",
+   "sk": {
+    "rating": null,
+    "residual": {
+     "score": 3,
+     "band": "med"
+    }
+   }
+  },
+  {
+   "id": "ra4-theft-or-sabotage",
+   "activities": [
+    "ra4"
+   ],
+   "area": "RA4 Black Powder",
+   "source": "RA4",
+   "hazard": "Theft or sabotage",
+   "risk": "",
+   "who": "Members",
+   "controls": "The public should be kept away from this area at all times. Powder can only be issued to members with the appropriate qualifications/licenses.\nThis area should be secure. (I.e. someone in attendance at all times.)\nThe Police area firearms officer should be informed of the storage of black powder on the campsite, and is entitled to visit and check that safety plus regulations are being upheld. The fire service should also be informed.\nIt is the responsibility of the fire master in charge of the powder to ensure all safety regulations are adhered to.\nFire fighting equipment should be readily available in this area.",
+   "sk": {
+    "rating": {
+     "score": 9,
+     "band": "high"
+    },
+    "residual": {
+     "score": 3,
+     "band": "med"
+    }
+   }
+  },
+  {
+   "id": "ra5-explosion-fire-caused-by-direct-or-indir",
+   "activities": [
+    "ra5"
+   ],
+   "area": "RA5 Delivery of Black Powder",
+   "source": "RA5",
+   "hazard": "Explosion/fire caused by direct or indirect heat source",
+   "risk": "Premature Ignition; Injury/loss of life.; Damage to Property",
+   "who": "Members",
+   "controls": "In the event of a fire on the campsite the powder area is a high-risk area and members must be evacuated for their own safety, and all possible fire precautions taken.\nThis area must be immediately identified to the fire service on their arrival.\nA blast proof/safe area must be maintained at all times around the storage and issue area of powder.\nA non-smoking policy must apply in this area.\nHazard signs must be clearly visible that this is a high-risk area.",
+   "sk": {
+    "rating": {
+     "score": 9,
+     "band": "high"
+    },
+    "residual": {
+     "score": 4,
+     "band": "med"
+    }
+   }
+  },
+  {
+   "id": "ra5-spillage",
+   "activities": [
+    "ra5"
+   ],
+   "area": "RA5 Delivery of Black Powder",
+   "source": "RA5",
+   "hazard": "Spillage",
+   "risk": "Premature Ignition",
+   "who": "Members",
+   "controls": "Water to be kept at hand to deal with spills at issue.",
+   "sk": {
+    "rating": {
+     "score": 9,
+     "band": "high"
+    },
+    "residual": {
+     "score": 4,
+     "band": "med"
+    }
+   }
+  },
+  {
+   "id": "ra5-powder-in-the-possession-of-non-qualifie",
+   "activities": [
+    "ra5"
+   ],
+   "area": "RA5 Delivery of Black Powder",
+   "source": "RA5",
+   "hazard": "Powder in the possession of non qualified persons",
+   "risk": "",
+   "who": "Members",
+   "controls": "Have a designated route for the powder delivery when it arrives.",
+   "sk": {
+    "rating": null,
+    "residual": {
+     "score": 3,
+     "band": "med"
+    }
+   }
+  },
+  {
+   "id": "ra5-theft-or-sabotage",
+   "activities": [
+    "ra5"
+   ],
+   "area": "RA5 Delivery of Black Powder",
+   "source": "RA5",
+   "hazard": "Theft or sabotage",
+   "risk": "",
+   "who": "Members",
+   "controls": "The public should be kept away from this area at all times. Powder can only be issued to members with the appropriate qualifications/licenses.\nThis area should be secure. (I.e. someone in attendance at all times.)\nThe Police area firearms officer should be informed of the storage of black powder on the campsite, and is entitled to visit and check that safety plus regulations are being upheld. The fire service should also be informed.\nThe persons responsible should have checked the magazine area is safe and conforms to regulations.\nAll relevant details of quantity of powder being delivered should be readily available in the event of spillage or accident.\nFire fighting equipment should be readily available in this area.\nNo larger than the necessary quantities should be transported and stored.",
+   "sk": {
+    "rating": {
+     "score": 9,
+     "band": "high"
+    },
+    "residual": {
+     "score": 3,
+     "band": "med"
+    }
+   }
+  },
+  {
+   "id": "ra6-explosion-fire-caused-by-direct-or-indir",
+   "activities": [
+    "ra6"
+   ],
+   "area": "RA6 Issue of Black Powder",
+   "source": "RA6",
+   "hazard": "Explosion/fire caused by direct or indirect heat source",
+   "risk": "Premature Ignition; Injury/loss of life.; Damage to Property",
+   "who": "Members",
+   "controls": "In the event of a fire on the campsite the powder area is a high-risk area and members must be evacuated for their own safety, and all possible fire precautions taken.\nThis area must be immediately identified to the fire service on their arrival.\nA blast proof/safe area must be maintained at all times around the storage and issue area of powder.\nA non-smoking policy must apply in this area.\nHazard signs must be clearly visible that this is a high-risk area.",
+   "sk": {
+    "rating": {
+     "score": 9,
+     "band": "high"
+    },
+    "residual": {
+     "score": 4,
+     "band": "med"
+    }
+   }
+  },
+  {
+   "id": "ra6-spillage",
+   "activities": [
+    "ra6"
+   ],
+   "area": "RA6 Issue of Black Powder",
+   "source": "RA6",
+   "hazard": "Spillage",
+   "risk": "Premature Ignition",
+   "who": "Members",
+   "controls": "Water to be kept at hand to deal with spills at issue.",
+   "sk": {
+    "rating": {
+     "score": 9,
+     "band": "high"
+    },
+    "residual": {
+     "score": 4,
+     "band": "med"
+    }
+   }
+  },
+  {
+   "id": "ra6-powder-in-the-possession-of-non-qualifie",
+   "activities": [
+    "ra6"
+   ],
+   "area": "RA6 Issue of Black Powder",
+   "source": "RA6",
+   "hazard": "Powder in the possession of non qualified persons",
+   "risk": "",
+   "who": "Members",
+   "controls": "Only the appropriate qualified person can issue the powder.",
+   "sk": {
+    "rating": null,
+    "residual": {
+     "score": 3,
+     "band": "med"
+    }
+   }
+  },
+  {
+   "id": "ra6-theft-or-sabotage",
+   "activities": [
+    "ra6"
+   ],
+   "area": "RA6 Issue of Black Powder",
+   "source": "RA6",
+   "hazard": "Theft or sabotage",
+   "risk": "",
+   "who": "Members",
+   "controls": "The public should be kept away from this area at all times. Powder can only be issued to members with the appropriate qualifications/licenses.\nThis area should be secure. (I.e. someone in attendance at all times.)\nThe Police area firearms officer should be informed of the storage of black powder on the campsite, and is entitled to visit and check that safety plus regulations are being upheld. The fire service should also be informed.\nPowder should on no account be issued to any person without the correct licenses and membership card.\nFire fighting equipment should be readily available in this area.\nHave a set procedure for issuing powder",
+   "sk": {
+    "rating": {
+     "score": 9,
+     "band": "high"
+    },
+    "residual": {
+     "score": 3,
+     "band": "med"
+    }
+   }
+  },
+  {
+   "id": "ra7-explosion-fire-caused-by-direct-or-indir",
+   "activities": [
+    "ra7"
+   ],
+   "area": "RA7 Return of Black Powder",
+   "source": "RA7",
+   "hazard": "Explosion/fire caused by direct or indirect heat source",
+   "risk": "Premature Ignition; Injury/loss of life.; Damage to Property",
+   "who": "Members",
+   "controls": "In the event of a fire on the campsite the powder area is a high-risk area and members must be evacuated for their own safety, and all possible fire precautions taken.\nThis area must be immediately identified to the fire service on their arrival.\nA blast proof/safe area must be maintained at all times around the storage and issue area of powder.\nA non-smoking policy must apply in this area.\nHazard signs must be clearly visible that this is a high-risk area.",
+   "sk": {
+    "rating": {
+     "score": 9,
+     "band": "high"
+    },
+    "residual": {
+     "score": 4,
+     "band": "med"
+    }
+   }
+  },
+  {
+   "id": "ra7-spillage",
+   "activities": [
+    "ra7"
+   ],
+   "area": "RA7 Return of Black Powder",
+   "source": "RA7",
+   "hazard": "Spillage",
+   "risk": "Premature Ignition",
+   "who": "Members",
+   "controls": "Water to be kept at hand to deal with spills at issue.",
+   "sk": {
+    "rating": {
+     "score": 9,
+     "band": "high"
+    },
+    "residual": {
+     "score": 4,
+     "band": "med"
+    }
+   }
+  },
+  {
+   "id": "ra7-powder-in-the-possession-of-non-qualifie",
+   "activities": [
+    "ra7"
+   ],
+   "area": "RA7 Return of Black Powder",
+   "source": "RA7",
+   "hazard": "Powder in the possession of non qualified persons",
+   "risk": "",
+   "who": "Members",
+   "controls": "Qualified competent persons made responsible for the collection of unused powder.",
+   "sk": {
+    "rating": null,
+    "residual": {
+     "score": 3,
+     "band": "med"
+    }
+   }
+  },
+  {
+   "id": "ra7-theft-or-sabotage",
+   "activities": [
+    "ra7"
+   ],
+   "area": "RA7 Return of Black Powder",
+   "source": "RA7",
+   "hazard": "Theft or sabotage",
+   "risk": "",
+   "who": "Members",
+   "controls": "The public should be kept away from this area at all times. Powder can only be issued to members with the appropriate qualifications/licenses.\nThis area should be secure. (I.e. someone in attendance at all times.)\nThe Police area firearms officer should be informed of the storage of black powder on the campsite, and is entitled to visit and check that safety plus regulations are being upheld. The fire service should also be informed.\nPowder should on no account be issued to any person without the correct licenses and membership card.\nFire fighting equipment should be readily available in this area.\nHave a set procedure for the return and requisition of unused powder.",
+   "sk": {
+    "rating": {
+     "score": 9,
+     "band": "high"
+    },
+    "residual": {
+     "score": 3,
+     "band": "med"
+    }
+   }
+  },
+  {
+   "id": "ra8-unauthorised-access-from-non-members",
+   "activities": [
+    "ra8"
+   ],
+   "area": "RA8 Campsite Area",
+   "source": "RA8",
+   "hazard": "Unauthorised access from non-members",
+   "risk": "Theft of property.; Damage to property-personal and structural.",
+   "who": "Members, other people on site",
+   "controls": "Access to and from the campsite to have camp guard.\nIf more then one access point gate guard on main entrance, provisions to secure secondary entrances.\nIf public right of way that has not been closed, members of the public should be escorted across the campsite for their own safety.\nCheck all persons entering for proof of SK membership.\nHave a list, or pre arranged form of identification of non-SK persons who are scheduled to require entry. (e.g. Toilet Cleaning, milkman.)",
+   "sk": {
+    "rating": {
+     "score": 3,
+     "band": "med"
+    },
+    "residual": {
+     "score": 2,
+     "band": "low"
+    }
+   }
+  },
+  {
+   "id": "ra8-use-of-firearms-in-camping-area",
+   "activities": [
+    "ra8"
+   ],
+   "area": "RA8 Campsite Area",
+   "source": "RA8",
+   "hazard": "Use of firearms in camping area",
+   "risk": "Injury from firearms and ammunition.; Fire started by firearms and ammunition.",
+   "who": "Members, other people on site",
+   "controls": "Clear rules state no use of musket/pistol firing on campsite. To be monitored by Commdaning Officers",
+   "sk": {
+    "rating": {
+     "score": 9,
+     "band": "high"
+    },
+    "residual": {
+     "score": 2,
+     "band": "low"
+    }
+   }
+  },
+  {
+   "id": "ra8-use-of-other-weapons-in-camping-area",
+   "activities": [
+    "ra8"
+   ],
+   "area": "RA8 Campsite Area",
+   "source": "RA8",
+   "hazard": "Use of other weapons in camping area",
+   "risk": "Injury from other weapons not safely stored e.g. pikes/swords.",
+   "who": "Members, other people on site",
+   "controls": "Clear areas for sword and other weapon practice with safety zone. To be monitored by Commanding Officer.",
+   "sk": {
+    "rating": {
+     "score": 6,
+     "band": "high"
+    },
+    "residual": {
+     "score": 2,
+     "band": "low"
+    }
+   }
+  },
+  {
+   "id": "ra9-collisions-of-pedestrians-and-traffic",
+   "activities": [
+    "ra9"
+   ],
+   "area": "RA9 Pedestrians and Traffic in Camping Areas",
+   "source": "RA9",
+   "hazard": "Collisions of Pedestrians and Traffic",
+   "risk": "Loss of Life or serious injury; Damage to property by either pedestrians or traffic.",
+   "who": "Members, other people on site",
+   "controls": "Roadways should always be clearly marked.\nWhen possible a one-way system should be used.\nSpeed limits should be in effect at all times.\nSpeed limits should be enforced.\nHost regiments should have the authority to remove members from the campsite who continually disregard these speed safety limits.\nAvoid creating “ blind spots”.\nPedestrians should if possible be kept away from areas that need to have a large amount of traffic movement.\nTraffic should be kept away from heavily used areas, such as the beer tent, food vans, powder issue and magazine.\nMembers should be encouraged not to move their vehicles unless necessary once on site.\nParked vehicles and camping units should not protrude onto roadways.\nMedics vehicles should be clearly identifiable and have clear unobstructed access away from the battlefield and site",
+   "sk": {
+    "rating": {
+     "score": 6,
+     "band": "high"
+    },
+    "residual": {
+     "score": 2,
+     "band": "low"
+    }
+   }
+  },
+  {
+   "id": "ra10-lack-of-access-for-vehicles",
+   "activities": [
+    "ra10"
+   ],
+   "area": "RA10 Roadways",
+   "source": "RA10",
+   "hazard": "Lack of access for vehicles",
+   "risk": "Emergency vehicles unable to enter could lead to; (a) Fire being unable to be controlled.; (b) Medical services being unable to reach causalities.; (c) Police unable to reach incidents or assisting the other emergency services.; Health Risk due to cleaning vehicles being unable to gain access to maintain toilet facilities.",
+   "who": "Members, other people on site",
+   "controls": "Members to be informed on arrival either verbally or by leaflet of basic layout of the campsite area.\nRestricted areas to be made clear e.g. Magazine has hazard signs.\nHost regiment to check roadways are maintained and clear of obstructing vehicles, tents, caravans etc.\nWhere possible extra parking areas away from the campsite be made available.\nHave overflow area available for excess numbers\nWhere possible have portaloos openings not directly stepping into the roadway. (Recess them a little bit).",
+   "sk": {
+    "rating": {
+     "score": 9,
+     "band": "high"
+    },
+    "residual": {
+     "score": 4,
+     "band": "med"
+    }
+   }
+  },
+  {
+   "id": "ra10-general-overall-risk-at-the-inability-of",
+   "activities": [
+    "ra10"
+   ],
+   "area": "RA10 Roadways",
+   "source": "RA10",
+   "hazard": "General overall risk at the inability of members unable to move freely around the campsite",
+   "risk": "",
+   "who": "Members, other people on site",
+   "controls": "Restrict speed limit & have signs.\nCampsite entrance designated inwards / outwards traffic lanes.\nWhere possible have a gate guard person in high viz stationed on the road outside entrance to the campsite to flag down & guide emergency vehicles that have been called (especially where some entrances are blind / narrow angled)\nWhere possible keep walking public clear of the public entrance gates for vehicular traffic.",
+   "sk": {
+    "rating": {
+     "score": 4,
+     "band": "med"
+    },
+    "residual": {
+     "score": 2,
+     "band": "low"
+    }
+   }
+  },
+  {
+   "id": "ra11-taking-part-in-battle",
+   "activities": [
+    "ra11"
+   ],
+   "area": "RA11 Battle",
+   "source": "RA11",
+   "hazard": "Taking part in battle",
+   "risk": "Powder Burns, loss of life, injury and serious injury.; Secondary ignition leading to explosions and fire.; Stabbing, impaling, facial/head injuries., crushing, broken bones; Hearing damage; Smoke inhalation; Slipping/Falling; Damage to personal or structural property.",
+   "who": "Members, public",
+   "controls": "SK medical facilities should be available at all times.\nOnly members who have been properly trained to SK standards allowed to take part in battles, demonstrations or displays\nCommanding Officers and chain of command used to ensure that their members are proficient in their chosen arms.\nMeasured charges insisted upon, and earplugs recommended\nMeasured charges insisted upon\nOfficers to be aware of ground",
+   "sk": {
+    "rating": {
+     "score": 9,
+     "band": "high"
+    },
+    "residual": {
+     "score": 3,
+     "band": "med"
+    }
+   }
+  },
+  {
+   "id": "ra11-watching-battle",
+   "activities": [
+    "ra11"
+   ],
+   "area": "RA11 Battle",
+   "source": "RA11",
+   "hazard": "Watching battle",
+   "risk": "Secondary ignition leading to explosions and fire.; Hearing damage; Damage to personal or structural property.",
+   "who": "Members, public",
+   "controls": "Medical facilities for the public must be on hand at all times.\nThe safety area in front of the public should be regularly checked by the organising regiment to prevent members of the public encroaching onto the battle area. This should be monitored by the Muster Organiser.\nOnly members and authorised personnel allowed into the safety area – this should be monitored by the Muster Organiser. Persons are authorised by the LGs of each army, Medics, Board of Safety Chair or in an emergency any member of the Board of Directors.\nThe public should be informed of possible dangers by;\n(a) Displayed information.\n(b) Information via commentary.\n(c) Public to be made aware not to touch anything found on the ground but to inform an SK member ASAP. (\nd) Public to be told not to enter onto the battlefield area after the performance however if this is unavoidable then they should be prevented from doing so until it has been thoroughly checked by participating members at the end of each performance after that ‘c’ above applies.\n(e) Maximum information to the public to ensure their safety.\nAll members must be aware of safety issues and be able to advise the public.\nPublic and SK interaction should be supervised by members familiar with safety issues specific to the circumstances.\nMuster planning must include access and egress for emergency vehicles to and from the battle site. Consideration of a suitable area for evacuation by helicopter paying attention to overhead cables, proximity of public, proximity of tentage, the ground clear of debris etc.",
+   "sk": {
+    "rating": {
+     "score": 9,
+     "band": "high"
+    },
+    "residual": {
+     "score": 3,
+     "band": "med"
+    }
+   }
+  },
+  {
+   "id": "ra12-collisions-of-vehicles",
+   "activities": [
+    "ra12"
+   ],
+   "area": "RA12 Leaving and Entering Campsite",
+   "source": "RA12",
+   "hazard": "Collisions of Vehicles",
+   "risk": "Loss of life.",
+   "who": "Members, other people on site",
+   "controls": "Entrance area should be:\n(a) Clearly marked.\n(b) Lighted if possible.\n(c) Warning signs from approximately 300 yards.\n(d) Traffic if possible should not have to cross across on coming traffic.\n(e) Members on road entrances should wear reflective safety jackets/coats.\n(f) Traffic if possible should not be allowed to queue on the main road when entering the campsite, a reasonable area should be allowed for checking members in.",
+   "sk": {
+    "rating": {
+     "score": 9,
+     "band": "high"
+    },
+    "residual": {
+     "score": 2,
+     "band": "low"
+    }
+   }
+  },
+  {
+   "id": "ra12-collision-of-vehicles-and-pedestrians",
+   "activities": [
+    "ra12"
+   ],
+   "area": "RA12 Leaving and Entering Campsite",
+   "source": "RA12",
+   "hazard": "Collision of vehicles and pedestrians",
+   "risk": "Serious injury.",
+   "who": "Members, other people on site",
+   "controls": "Police should be informed and any advice, and requirements strictly adhered to.",
+   "sk": {
+    "rating": {
+     "score": 9,
+     "band": "high"
+    },
+    "residual": {
+     "score": 2,
+     "band": "low"
+    }
+   }
+  },
+  {
+   "id": "ra12-possibility-of-entrance-area-being-block",
+   "activities": [
+    "ra12"
+   ],
+   "area": "RA12 Leaving and Entering Campsite",
+   "source": "RA12",
+   "hazard": "Possibility of entrance area being blocked impeding access for emergency services, and emergency evacuation",
+   "risk": "",
+   "who": "Members, other people on site",
+   "controls": "If possible on major events, police should be on duty at busy periods to maintain traffic control.",
+   "sk": {
+    "rating": {
+     "score": 9,
+     "band": "high"
+    },
+    "residual": {
+     "score": 2,
+     "band": "low"
+    }
+   }
+  },
+  {
+   "id": "ra13-general-horse-use",
+   "activities": [
+    "ra13"
+   ],
+   "area": "RA13 Use of Horses",
+   "source": "RA13",
+   "hazard": "General Horse use",
+   "risk": "Muster organiser is not aware of requirements for Horse",
+   "who": "Members, public",
+   "controls": "Master of Horse, CO of Wallers or Rupert's Lifeguard, must inspect site, or send their reprsentative, before the muster, and report that they are satisfied with the provision to the Muster Organiser, in writing.",
+   "sk": {
+    "rating": {
+     "score": 8,
+     "band": "high"
+    },
+    "residual": {
+     "score": 4,
+     "band": "med"
+    }
+   }
+  },
+  {
+   "id": "ra13-horse-lines-within-horse-lines-mounting-",
+   "activities": [
+    "ra13"
+   ],
+   "area": "RA13 Use of Horses",
+   "source": "RA13",
+   "hazard": "Horse lines within horse lines, mounting and form up area",
+   "risk": "Kicks, bites, escape of horse. Harm to cavalry, other re-enactors and public and horses.",
+   "who": "Members, public",
+   "controls": "a) The horses suitability is deemed by the owner, master of horse and senior cavalry officer.\nb) Horses must only be corralled within the horse lines\nc) The mounting must be the correct size for the horses, taking into consideration, size of and number of horses.\nd) Mounting area will not be entered by members of the public.\ne) The horses must not be situated in a place that will prevent access for emergency services to the site.\nf) Only members of the Sealed Knot, owner grooms may enter the coral or handle the horses\ng) Horses must not be left unsupervised at any time.\nh) Riders or /and grooms must check the fittings, collars and tethering of horses throughout the day, fixing any lose ropes, or informing the owner /contractor of issues.\ni) Water and food levels must be checked throughout the day and add to as necessary.\nj) Horses must always have a head collar on when not being ridden.\nk) Lead ropes must be easily accessible.\nl) There must be a planned rout should the horses need to be moved quickly from the staging / mounting area.\nm) Avoid leaving a single horse on the horse lines. If this has to be done the owner/groom must stay with them.",
+   "sk": {
+    "rating": {
+     "score": 9,
+     "band": "high"
+    },
+    "residual": {
+     "score": 3,
+     "band": "med"
+    }
+   }
+  },
+  {
+   "id": "ra13-ridden-scenario-and-parade",
+   "activities": [
+    "ra13"
+   ],
+   "area": "RA13 Use of Horses",
+   "source": "RA13",
+   "hazard": "Ridden scenario and Parade",
+   "risk": "Falls or kicks; “run offs”; Thrown shoe - land on re-enactor or public; Rider falls",
+   "who": "Members, public",
+   "controls": "a) Riders must be competent and have Sealed Knot accreditation.\nb) Riders must be considerate as to the kit they are riding in. They must only complete manoeuvres and displays that are within their ability.\nc) Riders must ensure they are aware of any dangers, such as water, pyrotechnics, traffic, street signs in the riding area.\nd) The horses welfare must always be considered.\ne) Danger to public must be considered during display, the following scenarios must be considered;\nf) if in field should be collected at earliest convenience to protect horse, Re-enactors and public.\ng) horse welfare to be considered – horse to be contained and captured as soon as possible in a safe a way as possible – assessment of ridder and or owner and officer as to whether they can continue.\nh) rider welfare - rider to be checked for injuries. Assessment of rider and or medical team as to whether they can continue.\ni) Rider must plan for escape routes\nj) Rider must avoid slip and trip hazards for horse\nk) Tack failure – owner to ensure all tack is to correct standard, fits horse and is suitable for use. All riders to ensure tack is fitted correctly before riding\nl) Dismounted escorts for horses and riders to and from parade. Public should be kept a safe distance for horses in escorts opinion .\nm) Should a horse appear to become distressed, they must be removed, with other horses if necessary, and taken back to main horse lines.\nn) Organisers should ensure that horses do not have to cross rope on the ground from barriers - rope must either be removed for access, or a proper gate used.\n0) If a rider feels unsafe/unwell or not fit to battle, they should make their CO aware and leave the field.",
+   "sk": {
+    "rating": {
+     "score": 9,
+     "band": "high"
+    },
+    "residual": {
+     "score": 4,
+     "band": "med"
+    }
+   }
+  },
+  {
+   "id": "ra13-general-risks",
+   "activities": [
+    "ra13"
+   ],
+   "area": "RA13 Use of Horses",
+   "source": "RA13",
+   "hazard": "General risks",
+   "risk": "Artillery and Musket; Pike; Injury or loss of life (human and equine).; Damage to property.",
+   "who": "Members, public",
+   "controls": "a)Riders must be aware of artillery and musket being fired and not engage or ride across loaded pieces. Equine ear plugs can be used if required\nb) Pike blocks at point must not be engaged. Pikemen trained not to hit horses with pike\nc) All horses used by the Society to be warranted safe by the horse contractor, including shoed and vaccinated\nd) Ensure horses cannot be accessed or fed by public or non-cavalry SK members - at least a 3 foot gap, double barrier if possible.\ne) Ensure there are enough toilets in cavalry area (at least 3 at minis/majors)\nf) Horses in the care of the Society to be ridden in performances or on campsites only by adequately trained and certificated members. (All risks)\ng) All training of uncertificated riders to take place away from public areas and campsites.\nh) All tack to be checked for safe condition prior to performances and training.\ni) All participants to be trained in safe practices regarding use of and contact with horses.\nj) Horses not to be ridden at excessive speed in campsites (walking only). or roadways(trotting if visibility of 50m+, or walking)\nk) Horses moved through spectator areas to be escorted by members on foot where possible.\nl) All riders to wear adequate hard headgear.\nm) Provision of adequate safety areas and/or barriers to performance area.\nn) Knowledge of the location and availability of local veterinary surgeons\no) Extra RA carried out if there are equine diseases in the area\np) Ensure that all manure is safely disposed of.\nCheck RA for adverse weather - ground and going.\nq) Check RA for adverse weather - ground and going.",
+   "sk": {
+    "rating": {
+     "score": 9,
+     "band": "high"
+    },
+    "residual": null
+   }
+  },
+  {
+   "id": "ra13-on-living-history",
+   "activities": [
+    "ra13"
+   ],
+   "area": "RA13 Use of Horses",
+   "source": "RA13",
+   "hazard": "On Living history",
+   "risk": "Escape from coral, public entering horse paddock",
+   "who": "Members, public",
+   "controls": "a) Horses will not be left unattended on living history when site open to public. Will return to electric fenced paddocks overnight",
+   "sk": {
+    "rating": {
+     "score": 6,
+     "band": "high"
+    },
+    "residual": null
+   }
+  },
+  {
+   "id": "ra13-pat-the-pony",
+   "activities": [
+    "ra13"
+   ],
+   "area": "RA13 Use of Horses",
+   "source": "RA13",
+   "hazard": "Pat the Pony",
+   "risk": "Member of public is bitten, stood on",
+   "who": "Members, public",
+   "controls": "b) A rope barrier between the horses and public is preferred. Riders must be accompanied by unmounted people and members of the public told not to go behind horses. Riders must be fully aware of surroundings and keep hold of horses.",
+   "sk": {
+    "rating": {
+     "score": 6,
+     "band": "high"
+    },
+    "residual": null
+   }
+  },
+  {
+   "id": "ra13-horse",
+   "activities": [
+    "ra13"
+   ],
+   "area": "RA13 Use of Horses",
+   "source": "RA13",
+   "hazard": "Horse",
+   "risk": "Danger of injury to public",
+   "who": "Members, public",
+   "controls": "c) Horses to be corraled within living history and not left unattended",
+   "sk": {
+    "rating": {
+     "score": 6,
+     "band": "high"
+    },
+    "residual": {
+     "score": 4,
+     "band": "med"
+    }
+   }
+  },
+  {
+   "id": "ra14-there-is-a-high-risk-of-collision-betwee",
+   "activities": [
+    "ra14"
+   ],
+   "area": "RA14 Marching on Public Highways",
+   "source": "RA14",
+   "hazard": "There is a high risk of collision between vehicles and the marching body from oncoming traffic",
+   "risk": "Poor visibility.; Speeding Traffic.; Risks to pedestrians.; Serious injury, loss of life.; Damage to vehicles.; Damage to property.",
+   "who": "Members, public",
+   "controls": "Marshals in High-Viz and/or High-Viz vehicles as escort\nMove in orderly fashion without separating the body and in good time\nTraffic if possible, should not be allowed to queue on main roads\nMarch to be during daylight hours (unless a specific risk assessment for night marching is carried ou)\nPolice should be informed and any advice or requirements strictly adhered to.\nRoute to be planned and checked prior to march proceeding\nMarching body should not straddle lane and march with the direction of traffic\nMembers to be advised of all obstructions overhead and ground level\nPublic not to handle any weapons\nClose supervision of interaction with public\nNo Firing of Musket (Only in pre-arranged areas with safety area and cornered off)",
+   "sk": {
+    "rating": {
+     "score": 9,
+     "band": "high"
+    },
+    "residual": {
+     "score": 3,
+     "band": "med"
+    }
+   }
+  },
+  {
+   "id": "ra15-props-used-to-illustrate",
+   "activities": [
+    "ra15"
+   ],
+   "area": "RA15 Lectures and Talks",
+   "source": "RA15",
+   "hazard": "Props used to illustrate",
+   "risk": "Public injury",
+   "who": "Members, public, children",
+   "controls": "Visitors will be separated from the props and only allowed access under supervision.",
+   "sk": {
+    "rating": {
+     "score": 4,
+     "band": "med"
+    },
+    "residual": {
+     "score": 3,
+     "band": "med"
+    }
+   }
+  },
+  {
+   "id": "ra15-musket",
+   "activities": [
+    "ra15"
+   ],
+   "area": "RA15 Lectures and Talks",
+   "source": "RA15",
+   "hazard": "Musket",
+   "risk": "",
+   "who": "Members, public, children",
+   "controls": "Musketeers present are trained, fully licenced and NO BLACKPOWDER will be present.",
+   "sk": {
+    "rating": {
+     "score": 6,
+     "band": "high"
+    },
+    "residual": {
+     "score": 3,
+     "band": "med"
+    }
+   }
+  },
+  {
+   "id": "ra15-sword",
+   "activities": [
+    "ra15"
+   ],
+   "area": "RA15 Lectures and Talks",
+   "source": "RA15",
+   "hazard": "Sword",
+   "risk": "",
+   "who": "Members, public, children",
+   "controls": "All are trained swordsman; The swords have blunted re-enactor blades. Swordsman to keep own control of sword at all times.",
+   "sk": {
+    "rating": {
+     "score": 4,
+     "band": "med"
+    },
+    "residual": {
+     "score": 3,
+     "band": "med"
+    }
+   }
+  },
+  {
+   "id": "ra15-pike-and-polearms",
+   "activities": [
+    "ra15"
+   ],
+   "area": "RA15 Lectures and Talks",
+   "source": "RA15",
+   "hazard": "Pike and polearms",
+   "risk": "",
+   "who": "Members, public, children",
+   "controls": "Re-enactors to keep situational awareness, especially of others and ceilings.",
+   "sk": {
+    "rating": {
+     "score": 3,
+     "band": "med"
+    },
+    "residual": {
+     "score": 3,
+     "band": "med"
+    }
+   }
+  },
+  {
+   "id": "ra15-charge-belt",
+   "activities": [
+    "ra15"
+   ],
+   "area": "RA15 Lectures and Talks",
+   "source": "RA15",
+   "hazard": "Charge belt",
+   "risk": "",
+   "who": "Members, public, children",
+   "controls": "Charge boxes will be clean and empty of black powder.",
+   "sk": {
+    "rating": {
+     "score": 6,
+     "band": "high"
+    },
+    "residual": {
+     "score": 2,
+     "band": "low"
+    }
+   }
+  },
+  {
+   "id": "ra15-various-leather-wood-objects",
+   "activities": [
+    "ra15"
+   ],
+   "area": "RA15 Lectures and Talks",
+   "source": "RA15",
+   "hazard": "Various Leather & Wood Objects",
+   "risk": "",
+   "who": "Members, public, children",
+   "controls": "Snap Sack, Food bowl and drinking vessel. Examples of soldier’s rations...which will not be consumed.",
+   "sk": {
+    "rating": {
+     "score": 2,
+     "band": "low"
+    },
+    "residual": {
+     "score": 2,
+     "band": "low"
+    }
+   }
+  },
+  {
+   "id": "ra15-collision-with-artefact-prop",
+   "activities": [
+    "ra15"
+   ],
+   "area": "RA15 Lectures and Talks",
+   "source": "RA15",
+   "hazard": "Collision with artefact/prop",
+   "risk": "",
+   "who": "Members, public, children",
+   "controls": "Re-entactors to maintain situational awareness at all time",
+   "sk": {
+    "rating": {
+     "score": 4,
+     "band": "med"
+    },
+    "residual": {
+     "score": 3,
+     "band": "med"
+    }
+   }
+  },
+  {
+   "id": "ra15-accidental-hit",
+   "activities": [
+    "ra15"
+   ],
+   "area": "RA15 Lectures and Talks",
+   "source": "RA15",
+   "hazard": "Accidental hit",
+   "risk": "",
+   "who": "Members, public, children",
+   "controls": "Do not hand weapon fully across to public unless in controlled arena or area where there is no danger to other public. Maintain own grip on artefact/prop as part of this.",
+   "sk": {
+    "rating": {
+     "score": 5,
+     "band": "high"
+    },
+    "residual": {
+     "score": 3,
+     "band": "med"
+    }
+   }
+  },
+  {
+   "id": "ra15-hand-injury",
+   "activities": [
+    "ra15"
+   ],
+   "area": "RA15 Lectures and Talks",
+   "source": "RA15",
+   "hazard": "Hand injury",
+   "risk": "",
+   "who": "Members, public, children",
+   "controls": "Re-enactor to ensure kit is safe and free from sharp edges or burrs",
+   "sk": {
+    "rating": {
+     "score": 4,
+     "band": "med"
+    },
+    "residual": {
+     "score": 3,
+     "band": "med"
+    }
+   }
+  },
+  {
+   "id": "ra15-building-damage",
+   "activities": [
+    "ra15"
+   ],
+   "area": "RA15 Lectures and Talks",
+   "source": "RA15",
+   "hazard": "Building damage",
+   "risk": "",
+   "who": "Members, public, children",
+   "controls": "Re-entactors to maintain situational awareness at all time",
+   "sk": {
+    "rating": {
+     "score": 4,
+     "band": "med"
+    },
+    "residual": {
+     "score": 3,
+     "band": "med"
+    }
+   }
+  },
+  {
+   "id": "ra15-working-with-children-under-19s-in-schoo",
+   "activities": [
+    "ra15"
+   ],
+   "area": "RA15 Lectures and Talks",
+   "source": "RA15",
+   "hazard": "Working with children (under 19s) in school or other situations",
+   "risk": "Ensure appropriate Safeguarding procedures are maintained",
+   "who": "Members, public, children",
+   "controls": "In schools, follow Safeguarding procedures and regulations.\nIf not DBS cleared, ensure not left unsupervised with any under 19s\nSeek full advice from SK Safeguarding Officer and Education Director",
+   "sk": {
+    "rating": {
+     "score": 6,
+     "band": "high"
+    },
+    "residual": {
+     "score": 3,
+     "band": "med"
+    }
+   }
+  },
+  {
+   "id": "ra16-weapons-carried-as-dress",
+   "activities": [
+    "ra16"
+   ],
+   "area": "RA16 Banquets",
+   "source": "RA16",
+   "hazard": "Weapons carried as dress",
+   "risk": "Public injury",
+   "who": "Members, public",
+   "controls": "Any swords carried have blunted re-enactor blades. Will not be drawn beyond scabbard. Swordsman to keep own control of sword at all times.",
+   "sk": {
+    "rating": {
+     "score": 4,
+     "band": "med"
+    },
+    "residual": {
+     "score": 3,
+     "band": "med"
+    }
+   }
+  },
+  {
+   "id": "ra16-musket",
+   "activities": [
+    "ra16"
+   ],
+   "area": "RA16 Banquets",
+   "source": "RA16",
+   "hazard": "Musket",
+   "risk": "",
+   "who": "Members, public",
+   "controls": "No muskets or powder",
+   "sk": {
+    "rating": {
+     "score": 6,
+     "band": "high"
+    },
+    "residual": {
+     "score": 3,
+     "band": "med"
+    }
+   }
+  },
+  {
+   "id": "ra16-pike-and-polearms",
+   "activities": [
+    "ra16"
+   ],
+   "area": "RA16 Banquets",
+   "source": "RA16",
+   "hazard": "Pike and polearms",
+   "risk": "",
+   "who": "Members, public",
+   "controls": "Re-enactors to keep situational awareness, especially of others and ceilings. No pikes",
+   "sk": {
+    "rating": {
+     "score": 3,
+     "band": "med"
+    },
+    "residual": {
+     "score": 3,
+     "band": "med"
+    }
+   }
+  },
+  {
+   "id": "ra16-building-damage",
+   "activities": [
+    "ra16"
+   ],
+   "area": "RA16 Banquets",
+   "source": "RA16",
+   "hazard": "Building damage",
+   "risk": "",
+   "who": "Members, public",
+   "controls": "Re-entactors to maintain situational awareness at all time",
+   "sk": {
+    "rating": {
+     "score": 4,
+     "band": "med"
+    },
+    "residual": {
+     "score": 3,
+     "band": "med"
+    }
+   }
+  },
+  {
+   "id": "ra16-reputational-damage",
+   "activities": [
+    "ra16"
+   ],
+   "area": "RA16 Banquets",
+   "source": "RA16",
+   "hazard": "Reputational Damage",
+   "risk": "",
+   "who": "Members, public",
+   "controls": "Organisers to ensure that there is no risk of issue with public regarding intoxication, damage or reuptational risk",
+   "sk": {
+    "rating": {
+     "score": 4,
+     "band": "med"
+    },
+    "residual": {
+     "score": 3,
+     "band": "med"
+    }
+   }
+  },
+  {
+   "id": "ra17-weapons-carried-as-dress",
+   "activities": [
+    "ra17"
+   ],
+   "area": "RA17 Meetings",
+   "source": "RA17",
+   "hazard": "Weapons carried as dress",
+   "risk": "Public injury",
+   "who": "Members, public",
+   "controls": "Any swords carried have blunted re-enactor blades. Will not be drawn beyond scabbard. Swordsman to keep own control of sword at all times.",
+   "sk": {
+    "rating": {
+     "score": 4,
+     "band": "med"
+    },
+    "residual": {
+     "score": 3,
+     "band": "med"
+    }
+   }
+  },
+  {
+   "id": "ra17-musket",
+   "activities": [
+    "ra17"
+   ],
+   "area": "RA17 Meetings",
+   "source": "RA17",
+   "hazard": "Musket",
+   "risk": "",
+   "who": "Members, public",
+   "controls": "No muskets or powder",
+   "sk": {
+    "rating": {
+     "score": 6,
+     "band": "high"
+    },
+    "residual": {
+     "score": 3,
+     "band": "med"
+    }
+   }
+  },
+  {
+   "id": "ra17-pike-and-polearms",
+   "activities": [
+    "ra17"
+   ],
+   "area": "RA17 Meetings",
+   "source": "RA17",
+   "hazard": "Pike and polearms",
+   "risk": "",
+   "who": "Members, public",
+   "controls": "Re-enactors to keep situational awareness, especially of others and ceilings.",
+   "sk": {
+    "rating": {
+     "score": 3,
+     "band": "med"
+    },
+    "residual": {
+     "score": 3,
+     "band": "med"
+    }
+   }
+  },
+  {
+   "id": "ra17-building-damage",
+   "activities": [
+    "ra17"
+   ],
+   "area": "RA17 Meetings",
+   "source": "RA17",
+   "hazard": "Building damage",
+   "risk": "",
+   "who": "Members, public",
+   "controls": "Re-entactors to maintain situational awareness at all time",
+   "sk": {
+    "rating": {
+     "score": 4,
+     "band": "med"
+    },
+    "residual": {
+     "score": 3,
+     "band": "med"
+    }
+   }
+  },
+  {
+   "id": "ra17-reputational-damage",
+   "activities": [
+    "ra17"
+   ],
+   "area": "RA17 Meetings",
+   "source": "RA17",
+   "hazard": "Reputational Damage",
+   "risk": "",
+   "who": "Members, public",
+   "controls": "Organisers to ensure that there is no risk of issue with public regarding intoxication, damage or reuptational risk",
+   "sk": {
+    "rating": {
+     "score": 4,
+     "band": "med"
+    },
+    "residual": {
+     "score": 3,
+     "band": "med"
+    }
+   }
+  },
+  {
+   "id": "ground-uneven",
+   "activities": [
+    "extra"
+   ],
+   "area": "Extra site walk-round checks",
+   "source": "extra",
+   "hazard": "Uneven ground, holes, rabbit burrows",
+   "risk": "",
+   "who": "Members, public",
+   "controls": "Walk the field before the event; mark or fill holes; brief units on known hazards."
+  },
+  {
+   "id": "ground-slope",
+   "activities": [
+    "extra"
+   ],
+   "area": "Extra site walk-round checks",
+   "source": "extra",
+   "hazard": "Steep slopes or banks",
+   "risk": "",
+   "who": "Members, cavalry, public",
+   "controls": "Keep battle lines off steep ground; tape off banks; position public on level ground."
+  },
+  {
+   "id": "water",
+   "activities": [
+    "extra"
+   ],
+   "area": "Extra site walk-round checks",
+   "source": "extra",
+   "hazard": "Open water, ditches, rivers (drowning, falls)",
+   "risk": "",
+   "who": "All, especially children",
+   "controls": "Fence or tape off; keep battle and camp clear; brief stewards."
+  },
+  {
+   "id": "overhead-lines",
+   "activities": [
+    "extra"
+   ],
+   "area": "Extra site walk-round checks",
+   "source": "extra",
+   "hazard": "Overhead power lines (pikes, colours, tent poles)",
+   "risk": "",
+   "who": "Pikemen, ensigns, campers",
+   "controls": "Mark on the site plan; exclusion zone with no pikes or poles raised beneath."
+  },
+  {
+   "id": "trees",
+   "activities": [
+    "extra"
+   ],
+   "area": "Extra site walk-round checks",
+   "source": "extra",
+   "hazard": "Trees, low branches, dead wood",
+   "risk": "",
+   "who": "All, cavalry",
+   "controls": "Check for dead branches; keep cavalry clear of low branches; no camping under unsafe trees."
+  },
+  {
+   "id": "livestock",
+   "activities": [
+    "extra"
+   ],
+   "area": "Extra site walk-round checks",
+   "source": "extra",
+   "hazard": "Livestock, dung, barbed or electric fencing",
+   "risk": "",
+   "who": "All",
+   "controls": "Agree with landowner to remove stock; mark electric fences; clear dung from the battle area."
+  },
+  {
+   "id": "guy-ropes",
+   "activities": [
+    "extra"
+   ],
+   "area": "Extra site walk-round checks",
+   "source": "extra",
+   "hazard": "Guy ropes and tent pegs (tripping)",
+   "risk": "",
+   "who": "Campers, public",
+   "controls": "Mark guy ropes; peg caps; keep walkways clear; lighting at night."
+  },
+  {
+   "id": "gas",
+   "activities": [
+    "extra"
+   ],
+   "area": "Extra site walk-round checks",
+   "source": "extra",
+   "hazard": "Gas cylinders and stoves",
+   "risk": "",
+   "who": "Campers",
+   "controls": "Cylinders upright, outside tents, away from fires; check hoses; no gas in the living history area."
+  },
+  {
+   "id": "alcohol",
+   "activities": [
+    "extra"
+   ],
+   "area": "Extra site walk-round checks",
+   "source": "extra",
+   "hazard": "Alcohol around fires, weapons and powder",
+   "risk": "",
+   "who": "Members",
+   "controls": "No drinking before or during battle; no powder handling after drinking; camp rules briefed."
+  },
+  {
+   "id": "wind-lightning",
+   "activities": [
+    "extra"
+   ],
+   "area": "Extra site walk-round checks",
+   "source": "extra",
+   "hazard": "High wind or lightning",
+   "risk": "",
+   "who": "All",
+   "controls": "Stop activity in lightning; lower pikes and colours; secure tents and gazebos."
+  },
+  {
+   "id": "cold-wet",
+   "activities": [
+    "extra"
+   ],
+   "area": "Extra site walk-round checks",
+   "source": "extra",
+   "hazard": "Cold and wet weather",
+   "risk": "",
+   "who": "All",
+   "controls": "Check the forecast; dry clothing; warm shelter available."
+  },
+  {
+   "id": "lost-child",
+   "activities": [
+    "extra"
+   ],
+   "area": "Extra site walk-round checks",
+   "source": "extra",
+   "hazard": "Lost children",
+   "risk": "",
+   "who": "Public",
+   "controls": "Lost child point; stewards briefed; announcement procedure."
+  },
+  {
+   "id": "welfare",
+   "activities": [
+    "extra"
+   ],
+   "area": "Extra site walk-round checks",
+   "source": "extra",
+   "hazard": "Toilets, drinking water, hand washing",
+   "risk": "",
+   "who": "All",
+   "controls": "Enough toilets and water points; hand washing near food."
+  },
+  {
+   "id": "manual-handling",
+   "activities": [
+    "extra"
+   ],
+   "area": "Extra site walk-round checks",
+   "source": "extra",
+   "hazard": "Manual handling (tents, guns, equipment)",
+   "risk": "",
+   "who": "Members",
+   "controls": "Team lifts; use trolleys; brief on safe lifting."
+  }
+ ]
 }

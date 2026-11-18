@@ -9,13 +9,13 @@ A phone app for risk-assessing English Civil War reenactment sites: battle, livi
   - **✨ Spot hazards**: an AI vision model suggests hazards it can see in the photo. You add or dismiss each one. Needs a one-off setup: see [`worker/README.md`](worker/README.md).
   - **📌 Mark hazards**: tap a photo to pin numbered hazard markers on it.
 - **Site plan**: add a satellite screenshot, sketch or organiser's plan and mark the battle area, crowd line, camp, powder store, fire points, first aid, emergency access and more.
-- **Hazard checklist** filtered by activity, scored likelihood × severity (1–5) before and after site-specific controls. Add your own hazards.
-- **Emergency and key info**: first aid point, nearest A&E, emergency RV, real-casualty and stop signals, safety officer, landowner.
+- **Sealed Knot checklists**: RA1–RA17 from the SK risk assessment workbook (Oct 23), each with its risks, control measures and SK standard rating, plus extra walk-round checks the workbook doesn't cover. Tick the RAs that apply, then score each hazard for this site: likelihood × severity (1–5) before and after site-specific controls. Add your own hazards.
+- **Emergency and key info**: SK5 number, muster organiser, CO and other organisers with phone numbers, first aid point, nearest A&E, emergency RV, real-casualty and stop signals, safety officer, landowner.
 - **On the day**:
   - Weather forecast for the site and date (Open-Meteo, no key needed), with warnings for heat, cold, rain, wind and thunderstorms.
   - A timed conditions log: what changed, what you did, and any hazard re-scored.
-- **Sign-off**: assessor and event commander sign on the screen with a finger.
-- **Report**: full printable report with numbered hazards, marked photos, site plan, log and signatures. **Print / Save as PDF** from the phone.
+- **Sign-off**: assessor, muster organiser, CO and H&S Director sign on the screen with a finger.
+- **Report**: full printable report with the RA1–RA17 Yes/No list (as on the SK sign-off sheet), training required, numbered hazards with SK and site ratings, marked photos, site plan, log and signatures. **Print / Save as PDF** from the phone.
 - **Safety briefing**: a one-page summary of key info and the medium/high risks, to print or **Share** as text (WhatsApp, email).
 - **Copy for a new event**: reuse last year's assessment of the same site, then re-walk and re-check.
 - **Export / import**: send an assessment to another phone as a file.
@@ -26,9 +26,15 @@ Everything is saved on the phone (IndexedDB), and the app keeps working offline 
 
 The app is a plain web app served from GitHub Pages. Open it in Chrome, then use **⋮ → Add to Home screen** to install it like an app.
 
-## Customising the hazards
+## Updating the hazards
 
-The checklist is in `data/hazards.json`. Each hazard has an `id`, `area`, `hazard`, `who`, standard `controls`, and the `activities` it applies to. The plan is to replace this starter list with the checklists from the Sealed Knot risk assessment workbook.
+The checklist is in `data/hazards.json`, built from the Sealed Knot workbook. When a new version of the workbook comes out, rebuild it with:
+
+```
+python3 tools/convert_sk_workbook.py SK_RA_new.xlsx
+```
+
+The script skips the leftover construction-template rows at the bottom of each sheet (drilling, HAV, PAT testing) and keeps the extra walk-round checks, which are listed in the script.
 
 ## Risk bands
 

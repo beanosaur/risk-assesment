@@ -138,6 +138,15 @@ input[type=checkbox] { width: 22px; height: 22px; accent-color: var(--accent); }
 .grid3 { display: grid; grid-template-columns: 1fr 1fr auto; gap: 8px; align-items: end; }
 .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
 
+details.controls { margin-top: 6px; }
+details.controls summary { cursor: pointer; font-weight: 600; color: var(--accent); min-height: 36px; display: flex; align-items: center; }
+ul.ctl { margin: 4px 0 0; padding-left: 20px; }
+ul.ctl li { margin-bottom: 3px; }
+details.controls > ul { font-size: .92rem; padding: 6px 0 0 10px; border-left: 3px solid var(--gold); }
+.sk .score { font-size: .85rem; padding: 1px 6px; }
+.training { background: #fff4d6; border-left: 4px solid var(--gold); padding: 6px 10px; border-radius: 6px; margin-bottom: 8px; }
+.ra-list td:last-child { width: 4em; }
+
 /* ---------- On the day ---------- */
 .wx { display: grid; gap: 4px; }
 .flags { margin: 8px 0 0; padding-left: 0; list-style: none; display: grid; gap: 6px; }
@@ -182,5 +191,8 @@ th { background: #efe2c4; }
   .card { border: 0; padding: 0; box-shadow: none; }
   h2 { break-after: avoid; }
   tr, .photo, .logentry, .risks li { break-inside: avoid; }
+  ul.ctl { margin: 4px 0 0; padding-left: 20px; }
+ul.ctl li { margin-bottom: 3px; }
+details.controls > ul { border: 0; padding: 0; }
   .score, .tag, th, .flags li { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
 }

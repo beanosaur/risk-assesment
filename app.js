@@ -32,8 +32,12 @@ const FEATURES = [
   { id: 'power', icon: '⚡', name: 'Overhead lines' },
 ];
 const LOG_TAGS = ['Rain', 'High wind', 'Lightning', 'Heat', 'Cold', 'Bigger crowd', 'Ground changed', 'Incident', 'Other'];
-const ROLES = [['assessor', 'Assessor'], ['commander', 'Event commander / organiser']];
+const ROLES = [['assessor', 'Assessor'], ['organiser', 'Muster organiser'], ['commander', 'Commanding officer (CO)'], ['hs', 'H&S Director (review)']];
 const INFO_FIELDS = [
+  ['sk5', 'SK5 number', ''],
+  ['organiser', 'Muster organiser and phone', ''],
+  ['co', 'Commanding officer (CO) and phone', ''],
+  ['others', 'Other organisers and phones', ''],
   ['firstAid', 'First aid point', 'e.g. St John tent by the main gate'],
   ['hospital', 'Nearest A&E', 'Hospital name and distance'],
   ['rv', 'Emergency rendezvous point', 'Where ambulances are met and guided in'],
@@ -113,8 +117,13 @@ async function saveNow() {
   catch (e) { alert('Could not save — the phone may be out of storage. ' + e.message); }
 }
 
+// Activity ids used before the Sealed Knot checklists were added.
+const OLD_ACTIVITIES = { battle: ['ra11', 'ra4'], 'living-history': ['ra3'], camping: ['ra1', 'ra8', 'ra9'], public: ['ra11'] };
 function normalize(a) {
   a.custom ||= []; a.photos ||= []; a.items ||= {}; a.activities ||= [];
+  if (LIB.activities.length && a.activities.some((x) => OLD_ACTIVITIES[x])) {
+    a.activities = [...new Set(a.activities.flatMap((x) => OLD_ACTIVITIES[x] || [x]).concat('extra'))];
+  }
   a.log ||= []; a.info ||= {}; a.signoff ||= {};
   for (const p of a.photos) p.pins ||= [];
   if (a.plan) a.plan.pins ||= [];
@@ -151,6 +160,9 @@ function itemFor(a, id) {
   if (!a.items[id]) a.items[id] = { applies: true, L: 0, S: 0, extra: '', rL: 0, rS: 0 };
   return a.items[id];
 }
+const skBadge = (r) => (r ? `<span class="score ${r.band}">${r.score}</span>` : '<span class="score">–</span>');
+const multiline = (s) => esc(s).replace(/\n/g, '<br>');
+const controlList = (s) => (s ? `<ul class="ctl">${s.split('\n').map((c) => `<li>${esc(c)}</li>`).join('')}</ul>` : '');
 const scoreOf = (it) => (it.rL * it.rS) || (it.L * it.S);
 function applied(a) { return hazardsFor(a).filter((h) => itemFor(a, h.id).applies); }
 function numbering(a) {
@@ -353,7 +365,8 @@ function viewSettings() {
     </section>
     <section class="card">
       <h3 style="margin-top:0">Hazard library</h3>
-      <p class="muted">${LIB.hazards.length} hazards across ${LIB.activities.length} activities. ${esc(LIB.note || '')}</p>
+      <p class="muted">${LIB.hazards.length} hazards in ${LIB.activities.length} sections. ${esc(LIB.note || '')}</p>
+      ${LIB.source ? `<p class="muted">From: ${esc(LIB.source)}</p>` : ''}
     </section>
     <div class="fab"><div class="row"><a class="btn grow" href="#/">Done</a></div></div>`;
 }
@@ -393,7 +406,7 @@ function viewEdit() {
         <span class="grow ${a.geo ? '' : 'muted'}">${a.geo ? `${a.geo.lat}, ${a.geo.lon} · <a href="https://www.google.com/maps?q=${a.geo.lat},${a.geo.lon}" target="_blank" rel="noopener">map</a>` : 'Not recorded'}</span>
         <button class="btn small secondary" data-action="geo">📍 ${a.geo ? 'Update' : 'Use my location'}</button>
       </div>
-      <label>Activities on this site</label>
+      <label>Sealed Knot risk assessments that apply</label>
       <div class="chips">
         ${LIB.activities.map((act) => `
           <label class="chip"><input type="checkbox" data-activity="${act.id}" ${a.activities.includes(act.id) ? 'checked' : ''}> ${esc(act.name)}</label>`).join('')}
@@ -439,6 +452,7 @@ function viewEdit() {
     ${hz.length ? '' : '<p class="muted">Choose at least one activity above to load the hazard checklist.</p>'}
     ${[...groups].map(([area, list]) => `
       <h3>${esc(area)}</h3>
+      ${areaNotes(list[0])}
       ${list.map((h) => hazardCard(a, h, nums)).join('')}`).join('')}
 
     <section class="card no-print">
@@ -517,6 +531,11 @@ function viewEdit() {
   initSigPads();
 }
 
+function areaNotes(h) {
+  const n = h && h.activities && h.activities[0] && (LIB.activityNotes || {})[h.activities[0]];
+  return n ? `<div class="muted training">${n.map(esc).join('<br>')}</div>` : '';
+}
+
 function legend(a, pins, nums) {
   if (!pins.length) return '';
   return `<ul class="legend">${pins.map((p) => `<li><span class="pin static ${p.kind ? 'feat' : ''}">${esc(pinLabel(p, nums))}</span> ${esc(pinName(a, p))}</li>`).join('')}</ul>`;
@@ -547,8 +566,10 @@ function hazardCard(a, h, nums) {
         <label class="chip" style="padding:4px 10px"><input type="checkbox" data-applies ${it.applies ? 'checked' : ''}> Applies</label>
       </div>
       ${it.applies ? `
-        ${h.who ? `<div class="muted">Who: ${esc(h.who)}</div>` : ''}
-        ${h.controls ? `<div class="muted">Standard controls: ${esc(h.controls)}</div>` : ''}
+        ${h.risk ? `<div class="muted"><strong>Risk:</strong> ${esc(h.risk)}</div>` : ''}
+        ${h.who ? `<div class="muted"><strong>Who:</strong> ${esc(h.who)}</div>` : ''}
+        ${h.sk ? `<div class="muted sk"><strong>SK rating:</strong> ${skBadge(h.sk.rating)} no controls → ${skBadge(h.sk.residual)} with controls</div>` : ''}
+        ${h.controls ? `<details class="controls"><summary>${h.sk ? 'SK control measures' : 'Standard controls'} (${h.controls.split('\n').length})</summary>${controlList(h.controls)}</details>` : ''}
         <div class="grid3">
           <div><label>Likelihood</label><select data-k="L">${opts(LIKELIHOOD, it.L)}</select></div>
           <div><label>Severity</label><select data-k="S">${opts(SEVERITY, it.S)}</select></div>
@@ -583,7 +604,7 @@ function viewReport() {
       <h1>Risk assessment: ${esc(a.event || 'Untitled event')}</h1>
       <table>
         <tr><th>Site</th><td>${esc(a.site)}</td><th>Date</th><td>${fmtDate(a.date)}</td></tr>
-        <tr><th>Assessed by</th><td>${esc(a.assessor)}</td><th>Activities</th><td>${esc(actNames)}</td></tr>
+        <tr><th>Assessed by</th><td>${esc(a.assessor)}</td><th>Risk assessments</th><td>${esc(actNames)}</td></tr>
         ${a.geo ? `<tr><th>Position</th><td colspan="3">${a.geo.lat}, ${a.geo.lon}</td></tr>` : ''}
       </table>
       <h2>Summary</h2>
@@ -593,24 +614,32 @@ function viewReport() {
         <span class="score low">${counts.low} Low</span>
         ${counts.unscored ? `<span class="score">${counts.unscored} not scored</span>` : ''}
       </div>
-      <p class="muted">Risk = likelihood × severity (1–5 each). 1–4 Low, 5–12 Medium, 15–25 High. Summary uses the residual score where given.</p>
+      <p class="muted">Site risk = likelihood × severity (1–5 each) scored on this site: 1–4 Low, 5–12 Medium, 15–25 High. The summary uses the site residual score where given. SK rating is the Sealed Knot workbook's standard rating (red High, amber Medium, green Low) before and after its control measures.</p>
+
+      <h2>Sealed Knot risk assessments</h2>
+      <table class="ra-list">
+        ${LIB.activities.filter((x) => x.id !== 'extra').map((x) => `<tr><td>${esc(x.name)}</td><td>${a.activities.includes(x.id) ? '<strong>Yes</strong>' : 'No'}</td></tr>`).join('')}
+        ${a.activities.includes('extra') ? '<tr><td>Extra site walk-round checks</td><td><strong>Yes</strong></td></tr>' : ''}
+      </table>
+      ${reportTraining(a)}
 
       ${info ? `<h2>Emergency and key information</h2><table>${info}</table>` : ''}
       ${a.weather && !a.weather.error ? `<h2>Weather</h2>${weatherHtml(a)}` : ''}
 
       <h2>Hazards</h2>
       <table>
-        <thead><tr><th>#</th><th>Hazard</th><th>Who</th><th>Risk</th><th>Controls</th><th>Residual</th></tr></thead>
+        <thead><tr><th>#</th><th>Hazard</th><th>Who</th><th>SK rating</th><th>Site risk</th><th>Controls</th><th>Site residual</th></tr></thead>
         <tbody>
         ${rows.map((h) => {
           const it = a.items[h.id];
           const s = it.L * it.S, rs = it.rL * it.rS;
           return `<tr>
             <td>${nums.get(h.id)}</td>
-            <td><strong>${esc(h.hazard)}</strong><div class="muted">${esc(h.area)}</div></td>
+            <td><strong>${esc(h.hazard)}</strong>${h.risk ? `<div>${esc(h.risk)}</div>` : ''}<div class="muted">${esc(h.area)}</div></td>
             <td>${esc(h.who)}</td>
+            <td style="white-space:nowrap">${h.sk ? `${skBadge(h.sk.rating)} → ${skBadge(h.sk.residual)}` : ''}</td>
             <td><span class="score ${band(s)}">${s || '–'}</span></td>
-            <td>${esc(h.controls)}${it.extra ? `<br><strong>On this site:</strong> ${esc(it.extra).replace(/\n/g, '<br>')}` : ''}</td>
+            <td>${controlList(h.controls)}${it.extra ? `<br><strong>On this site:</strong> ${multiline(it.extra)}` : ''}</td>
             <td><span class="score ${band(rs)}">${rs || '–'}</span></td>
           </tr>`;
         }).join('')}
@@ -643,12 +672,25 @@ function viewReport() {
     </div></div>`;
 }
 
+function reportTraining(a) {
+  const notes = a.activities.flatMap((id) => ((LIB.activityNotes || {})[id] || []).map((t) => [id, t]));
+  if (!notes.length) return '';
+  const name = (id) => (LIB.activities.find((x) => x.id === id) || {}).name || id;
+  return `<h2>Training required</h2><ul>${notes.map(([id, t]) => `<li><strong>${esc(name(id))}:</strong> ${esc(t)}</li>`).join('')}</ul>`;
+}
+
 function briefingRisks(a) {
   return applied(a)
-    .map((h) => ({ h, it: a.items[h.id], sc: scoreOf(a.items[h.id]), first: a.items[h.id].L * a.items[h.id].S }))
-    .filter((r) => r.first >= 5 || r.sc >= 5)
-    .sort((x, y) => (y.first - x.first) || (y.sc - x.sc))
-    .slice(0, 12);
+    .map((h) => {
+      const it = a.items[h.id];
+      const first = it.L * it.S;
+      // Use this site's score where given, otherwise the SK standard rating.
+      const b = first ? band(first) : (h.sk && h.sk.rating ? h.sk.rating.band : '');
+      return { h, it, first, b, rank: first || (h.sk && h.sk.rating ? h.sk.rating.score : 0) };
+    })
+    .filter((r) => r.b === 'high' || r.b === 'med')
+    .sort((x, y) => (({ high: 2, med: 1 })[y.b] - ({ high: 2, med: 1 })[x.b]) || (y.rank - x.rank))
+    .slice(0, 15);
 }
 function viewBriefing() {
   const a = current;
@@ -662,11 +704,11 @@ function viewBriefing() {
       ${info ? `<h2>Key information</h2><table>${info}</table>` : '<p class="muted">Add first aid, A&E, signals and contacts under Key info to show them here.</p>'}
       ${a.weather && !a.weather.error ? `<h2>Weather</h2>${weatherHtml(a)}` : ''}
       <h2>Main risks and what we're doing about them</h2>
-      ${risks.length ? `<ol class="risks">${risks.map(({ h, it, first }) => `
-        <li><span class="score ${band(first)}">${BAND_LABEL[band(first)]}</span> <strong>${esc(h.hazard)}</strong>
-          <div>${esc(h.controls)}</div>
+      ${risks.length ? `<ol class="risks">${risks.map(({ h, it, first, b }) => `
+        <li><span class="score ${b}">${BAND_LABEL[b]}${first ? '' : ' (SK)'}</span> <strong>${esc(h.hazard)}</strong>
+          ${controlList(h.controls)}
           ${it.extra ? `<div><em>On this site:</em> ${esc(it.extra).replace(/\n/g, '<br>')}</div>` : ''}</li>`).join('')}</ol>`
-        : '<p class="muted">Score the hazards to list the main risks here (medium and high).</p>'}
+        : '<p class="muted">No medium or high risks in the sections chosen.</p>'}
       ${a.plan ? `<h2>Site plan</h2><div class="plan">${pinnedImage(a.plan.dataUrl, a.plan.pins, nums)}</div>${legend(a, a.plan.pins, nums)}` : ''}
       ${a.log.length ? `<h2>Changes today</h2>${a.log.map((e) => logEntry(a, e, nums, false)).join('')}` : ''}
     </div>
@@ -687,8 +729,8 @@ function briefingText(a) {
   const risks = briefingRisks(a);
   if (risks.length) {
     L.push('', 'MAIN RISKS');
-    risks.forEach(({ h, it, first }, i) => {
-      L.push(`${i + 1}. ${h.hazard} (${BAND_LABEL[band(first)]})`, `   ${h.controls}`);
+    risks.forEach(({ h, it, first, b }, i) => {
+      L.push(`${i + 1}. ${h.hazard} (${BAND_LABEL[b]}${first ? '' : ', SK rating'})`, ...h.controls.split('\n').map((c) => `   - ${c}`));
       if (it.extra) L.push(`   On this site: ${it.extra.replace(/\n/g, '; ')}`);
     });
   }
@@ -892,7 +934,7 @@ $app.addEventListener('click', async (e) => {
 
   if (act === 'new') {
     const a = normalize({ id: uid(), event: '', site: '', date: today(), assessor: settings.get().assessor || '',
-      activities: ['battle', 'public'], notes: '', created: new Date().toISOString() });
+      activities: [...(LIB.defaultActivities || [])], notes: '', created: new Date().toISOString() });
     await store.put(a);
     location.hash = '#/a/' + a.id;
   } else if (act === 'test-ai') {
