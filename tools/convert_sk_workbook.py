@@ -1,7 +1,10 @@
 #!/usr/bin/env python3
-"""Convert the Sealed Knot risk assessment workbook (SK_RA_*.xlsx) into data/hazards.json.
+"""Convert the Sealed Knot risk assessment workbook (SK_RA_*.xlsx) into a private checklist file.
 
-Usage:  python3 tools/convert_sk_workbook.py path/to/SK_RA_Oct_23.xlsx
+Usage:  python3 tools/convert_sk_workbook.py path/to/SK_RA_Oct_23.xlsx [sealed-knot-checklist.json]
+
+The output is loaded into the app from Settings -> Load checklist file and stays on the phone.
+Do NOT commit the output to this public repository: the Sealed Knot's text is not for publishing.
 
 Each RA sheet becomes a section ("activity") in the app. Rows are grouped by the
 "Activity/Hazard" column; the "Risk" texts become the hazard's risks, and the control
@@ -37,7 +40,7 @@ WHO = {
 SKIP_TRAINING = {'CSCS/ Manual Handling'}
 SKIP_TRAINING_FOR = {12: None, 15: 'Bad weather planning', 16: 'Bad weather planning', 17: 'Bad weather planning'}
 # Genuine SK lines that sit inside the template area of a sheet.
-KEEP_FROM_TEMPLATE_AREA = {11: ['THE CHAIN OF COMMAND TO MAINTAIN PROPER ORDER TO PREVENT IRRESPONSIBLE BEHAVIOUR BY MEMBERS.']}
+KEEP_FROM_TEMPLATE_AREA = {11: ['THE CHAIN OF COMMAND']}  # line prefixes
 DEFAULT_ON = ['ra1', 'ra2', 'ra4', 'ra8', 'ra9', 'ra10', 'ra11', 'ra12', 'extra']
 
 EXTRA_CHECKS = [
@@ -99,7 +102,7 @@ def convert(path):
                 continue
             if in_template:
                 t = clean(cells.get('H'))
-                if t in KEEP_FROM_TEMPLATE_AREA.get(n, []):
+                if any(t.startswith(k) for k in KEEP_FROM_TEMPLATE_AREA.get(n, [])):
                     training.append(t)
                 continue
             b, c, h = clean(cells.get('B')), clean(cells.get('C')), clean(cells.get('H'))
@@ -145,6 +148,7 @@ def convert(path):
         hazards.append({'id': hid, 'activities': ['extra'], 'area': 'Extra site walk-round checks', 'source': 'extra',
                         'hazard': hz, 'risk': '', 'who': who, 'controls': ctl})
     return {
+        'type': 'checklist',
         'version': 2,
         'source': f'Sealed Knot Risk Assessment workbook ({re.sub(r"^[0-9a-f]{8}-", "", Path(path).name)}, {version})',
         'note': 'RA1–RA17 from the Sealed Knot workbook, plus extra walk-round checks that are not in it.',
@@ -157,9 +161,9 @@ def convert(path):
 
 
 if __name__ == '__main__':
-    if len(sys.argv) != 2:
+    if len(sys.argv) not in (2, 3):
         sys.exit(__doc__)
-    out = Path(__file__).resolve().parent.parent / 'data' / 'hazards.json'
+    out = Path(sys.argv[2] if len(sys.argv) == 3 else 'sealed-knot-checklist.json')
     data = convert(sys.argv[1])
     out.write_text(json.dumps(data, ensure_ascii=False, indent=1) + '\n', encoding='utf-8')
     print(f'Wrote {len(data["hazards"])} hazards in {len(data["activities"])} sections to {out}')

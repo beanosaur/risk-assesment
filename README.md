@@ -9,7 +9,7 @@ A phone app for risk-assessing English Civil War reenactment sites: battle, livi
   - **✨ Spot hazards**: an AI vision model suggests hazards it can see in the photo. You add or dismiss each one. Needs a one-off setup: see [`worker/README.md`](worker/README.md).
   - **📌 Mark hazards**: tap a photo to pin numbered hazard markers on it.
 - **Site plan**: add a satellite screenshot, sketch or organiser's plan and mark the battle area, crowd line, camp, powder store, fire points, first aid, emergency access and more.
-- **Sealed Knot checklists**: RA1–RA17 from the SK risk assessment workbook (Oct 23), each with its risks, control measures and SK standard rating, plus extra walk-round checks the workbook doesn't cover. Tick the RAs that apply, then score each hazard for this site: likelihood × severity (1–5) before and after site-specific controls. Add your own hazards.
+- **Sealed Knot checklists** (loaded privately, see below): RA1–RA17 from the SK risk assessment workbook, each with its risks, control measures and SK standard rating, plus extra walk-round checks the workbook doesn't cover. Tick the RAs that apply, then score each hazard for this site: likelihood × severity (1–5) before and after site-specific controls. Add your own hazards.
 - **Emergency and key info**: SK5 number, muster organiser, CO and other organisers with phone numbers, first aid point, nearest A&E, emergency RV, real-casualty and stop signals, safety officer, landowner.
 - **On the day**:
   - Weather forecast for the site and date (Open-Meteo, no key needed), with warnings for heat, cold, rain, wind and thunderstorms.
@@ -26,15 +26,14 @@ Everything is saved on the phone (IndexedDB), and the app keeps working offline 
 
 The app is a plain web app served from GitHub Pages. Open it in Chrome, then use **⋮ → Add to Home screen** to install it like an app.
 
-## Updating the hazards
+## The hazard checklist
 
-The checklist is in `data/hazards.json`, built from the Sealed Knot workbook. When a new version of the workbook comes out, rebuild it with:
+The public app ships with a generic starter list (`data/hazards.json`). The Sealed Knot RA1–RA17 checklists are **not** published here, because they're the Sealed Knot's own material. Instead:
 
-```
-python3 tools/convert_sk_workbook.py SK_RA_new.xlsx
-```
+1. Build a private checklist file from the workbook: `python3 tools/convert_sk_workbook.py SK_RA_Oct_23.xlsx`
+2. On the phone, open **⚙️ Settings → Load checklist file** and pick `sealed-knot-checklist.json`. It's kept on that phone only.
 
-The script skips the leftover construction-template rows at the bottom of each sheet (drilling, HAV, PAT testing) and keeps the extra walk-round checks, which are listed in the script.
+Don't commit `sealed-knot-checklist.json` to this repository.
 
 ## Risk bands
 

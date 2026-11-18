@@ -102,6 +102,29 @@ function fmtDateTime(iso) {
 const slug = (s) => String(s || 'assessment').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '').slice(0, 40) || 'assessment';
 
 let LIB = { activities: [], hazards: [] };
+// The Sealed Knot checklist is private, so it is loaded from a file on the phone
+// rather than published with the app. Without it the built-in starter list is used.
+function privateChecklist() {
+  try { return JSON.parse(localStorage.getItem('ra-checklist')); } catch { return null; }
+}
+async function importChecklist(file) {
+  let d;
+  try { d = JSON.parse(await file.text()); } catch { return alert('That file is not a checklist.'); }
+  if (!d || d.type !== 'checklist' || !Array.isArray(d.activities) || !Array.isArray(d.hazards)) {
+    return alert('That file is not a checklist. Use the sealed-knot-checklist.json file.');
+  }
+  try { localStorage.setItem('ra-checklist', JSON.stringify(d)); }
+  catch { return alert('Could not save the checklist — the phone may be out of storage.'); }
+  LIB = d;
+  alert(`Loaded ${d.hazards.length} hazards in ${d.activities.length} sections.`);
+  viewSettings();
+}
+async function removeChecklist() {
+  if (!confirm('Remove the loaded checklist and go back to the built-in starter list?')) return;
+  try { localStorage.removeItem('ra-checklist'); } catch { /* storage unavailable */ }
+  LIB = await (await fetch('data/hazards.json')).json();
+  viewSettings();
+}
 let current = null; // assessment being edited
 let editor = null;  // open pin editor
 let saveTimer = null;
@@ -121,7 +144,8 @@ async function saveNow() {
 const OLD_ACTIVITIES = { battle: ['ra11', 'ra4'], 'living-history': ['ra3'], camping: ['ra1', 'ra8', 'ra9'], public: ['ra11'] };
 function normalize(a) {
   a.custom ||= []; a.photos ||= []; a.items ||= {}; a.activities ||= [];
-  if (LIB.activities.length && a.activities.some((x) => OLD_ACTIVITIES[x])) {
+  const known = new Set(LIB.activities.map((x) => x.id));
+  if (known.has('ra11') && a.activities.some((x) => OLD_ACTIVITIES[x])) {
     a.activities = [...new Set(a.activities.flatMap((x) => OLD_ACTIVITIES[x] || [x]).concat('extra'))];
   }
   a.log ||= []; a.info ||= {}; a.signoff ||= {};
@@ -364,9 +388,12 @@ function viewSettings() {
       <input id="s-name" type="text" data-setting="assessor" value="${esc(st.assessor)}">
     </section>
     <section class="card">
-      <h3 style="margin-top:0">Hazard library</h3>
+      <h3 style="margin-top:0">Hazard checklist</h3>
       <p class="muted">${LIB.hazards.length} hazards in ${LIB.activities.length} sections. ${esc(LIB.note || '')}</p>
       ${LIB.source ? `<p class="muted">From: ${esc(LIB.source)}</p>` : ''}
+      ${privateChecklist() ? `<button class="btn small secondary" data-action="remove-checklist">Remove loaded checklist</button>`
+        : '<p class="muted">Using the built-in starter list. Load the Sealed Knot checklist file to use RA1–RA17. It is kept on this phone only.</p>'}
+      <label class="btn secondary" style="margin-top:8px">📂 ${privateChecklist() ? 'Load a newer checklist file' : 'Load checklist file'}<input type="file" accept=".json,application/json" data-action="import-checklist" hidden></label>
     </section>
     <div class="fab"><div class="row"><a class="btn grow" href="#/">Done</a></div></div>`;
 }
@@ -406,7 +433,7 @@ function viewEdit() {
         <span class="grow ${a.geo ? '' : 'muted'}">${a.geo ? `${a.geo.lat}, ${a.geo.lon} · <a href="https://www.google.com/maps?q=${a.geo.lat},${a.geo.lon}" target="_blank" rel="noopener">map</a>` : 'Not recorded'}</span>
         <button class="btn small secondary" data-action="geo">📍 ${a.geo ? 'Update' : 'Use my location'}</button>
       </div>
-      <label>Sealed Knot risk assessments that apply</label>
+      <label>${privateChecklist() ? 'Sealed Knot risk assessments that apply' : 'Activities on this site'}</label>
       <div class="chips">
         ${LIB.activities.map((act) => `
           <label class="chip"><input type="checkbox" data-activity="${act.id}" ${a.activities.includes(act.id) ? 'checked' : ''}> ${esc(act.name)}</label>`).join('')}
@@ -449,6 +476,7 @@ function viewEdit() {
     </section>
 
     <h2 id="sec-hazards">Hazards</h2>
+    ${privateChecklist() ? '' : '<div class="card banner">Using the built-in starter list. <a href="#/settings">Load the Sealed Knot checklist</a> in Settings to use RA1–RA17.</div>'}
     ${hz.length ? '' : '<p class="muted">Choose at least one activity above to load the hazard checklist.</p>'}
     ${[...groups].map(([area, list]) => `
       <h3>${esc(area)}</h3>
@@ -616,11 +644,11 @@ function viewReport() {
       </div>
       <p class="muted">Site risk = likelihood × severity (1–5 each) scored on this site: 1–4 Low, 5–12 Medium, 15–25 High. The summary uses the site residual score where given. SK rating is the Sealed Knot workbook's standard rating (red High, amber Medium, green Low) before and after its control measures.</p>
 
-      <h2>Sealed Knot risk assessments</h2>
+      ${LIB.activities.some((x) => x.id === 'ra1') ? `<h2>Sealed Knot risk assessments</h2>
       <table class="ra-list">
         ${LIB.activities.filter((x) => x.id !== 'extra').map((x) => `<tr><td>${esc(x.name)}</td><td>${a.activities.includes(x.id) ? '<strong>Yes</strong>' : 'No'}</td></tr>`).join('')}
         ${a.activities.includes('extra') ? '<tr><td>Extra site walk-round checks</td><td><strong>Yes</strong></td></tr>' : ''}
-      </table>
+      </table>` : ''}
       ${reportTraining(a)}
 
       ${info ? `<h2>Emergency and key information</h2><table>${info}</table>` : ''}
@@ -894,6 +922,7 @@ $app.addEventListener('input', (e) => {
 $app.addEventListener('change', async (e) => {
   const t = e.target;
   if (t.dataset.action === 'import' && t.files.length) { await importAssessment(t.files[0]); t.value = ''; return; }
+  if (t.dataset.action === 'import-checklist' && t.files.length) { await importChecklist(t.files[0]); t.value = ''; return; }
   if (!current) return;
   if (t.dataset.activity) {
     const id = t.dataset.activity;
@@ -934,7 +963,7 @@ $app.addEventListener('click', async (e) => {
 
   if (act === 'new') {
     const a = normalize({ id: uid(), event: '', site: '', date: today(), assessor: settings.get().assessor || '',
-      activities: [...(LIB.defaultActivities || [])], notes: '', created: new Date().toISOString() });
+      activities: [...(LIB.defaultActivities || ['battle', 'public'])], notes: '', created: new Date().toISOString() });
     await store.put(a);
     location.hash = '#/a/' + a.id;
   } else if (act === 'test-ai') {
@@ -947,6 +976,8 @@ $app.addEventListener('click', async (e) => {
       const data = await res.json().catch(() => ({}));
       out.textContent = res.ok ? '✅ Connected' : '❌ ' + (data.error || 'error ' + res.status);
     } catch { out.textContent = '❌ Could not reach the relay. Check the address.'; }
+  } else if (act === 'remove-checklist') {
+    removeChecklist();
   } else if (!current) {
     return;
   } else if (act === 'jump') {
@@ -1090,7 +1121,7 @@ window.addEventListener('pagehide', saveNow);
 
 (async function init() {
   try {
-    LIB = await (await fetch('data/hazards.json')).json();
+    LIB = privateChecklist() || await (await fetch('data/hazards.json')).json();
   } catch (e) {
     $app.innerHTML = '<p>Could not load the hazard list. Open the app through a web address (not as a local file).</p>';
     return;
